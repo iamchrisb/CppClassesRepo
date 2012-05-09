@@ -9,12 +9,12 @@
   **/
 RationalNumber rnCheckNeg(RationalNumber n){
     //
-    if(n.zaehler<0 && n.nenner<0){
-        RationalNumber rn = {n.zaehler*-1, n.nenner*-1};
+    if(n.zaehler()<0 && n.nenner()<0){
+        RationalNumber rn(n.zaehler()*-1, n.nenner()*-1);
         return rn;
     }
-    if(n.zaehler>0 && n.nenner<0){
-        RationalNumber rn = {n.zaehler*-1, n.nenner*-1};
+    if(n.zaehler()>0 && n.nenner()<0){
+        RationalNumber rn(n.zaehler()*-1, n.nenner()*-1);
         return rn;
     }
     return n;
@@ -38,7 +38,7 @@ int kgV(int nenner1, int nenner2){
   * Diese Methode ueberprueft ob eine RationalNumber valide ist. Dazu darf der Nenner nicht 0 sein.
   **/
 bool RationalNumber::rnIsValid(){
-    if(nenner == 0){
+    if(nenner() == 0){
         return false;
     }
     return true;
@@ -47,29 +47,33 @@ bool RationalNumber::rnIsValid(){
   * Diese Methode ueberprueft ob eine RationalNumber Not a Number also keine RationalNumber ist.
   **/
 bool RationalNumber::rnIsNaN(){
-    if(this.rnIsValid()){
+    if(rnIsValid()){
         return false;
     }
     return true;
 }
+
 /**
   * Diese Methode ueberprueft ob zwei RationalNumbers gleich sind, also auch den gleichen Wert haben.
   **/
+/*
 bool RationalNumber::rnEqual(RationalNumber e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!this.rnIsValid() || !e.rnIsValid()){
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
-    if(nenner == nenner){
-        return zaehler==zaehler;
+    if(nenner() == nenner()){
+        return zaehler()==zaehler();
     }
-    int hN= kgV(this.nenner, e.nenner);
-    return zaehler*(hN/nenner) == zaehler*(hN/nenner);
+    int hN= kgV(this.nenner(), e.nenner());
+    return zaehler()*(hN/nenner()) == zaehler()*(hN/nenner());
 }
+*/
 /**
   * Diese Methode checked ob n kleiner e ist.
   **/
+/*
 bool RationalNumber::rnLessThan(RationalNumber e){
     this = rnCheckNeg(this);
     e = rnCheckNeg(e);
@@ -78,16 +82,18 @@ bool RationalNumber::rnLessThan(RationalNumber e){
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
-    if(nenner == e.nenner){
-        return zaehler < e.zaehler;
+    if(nenner() == e.nenner()){
+        return zaehler() < e.zaehler();
     }
-    int hN= kgV(n.nenner, e.nenner);
-    return n.zaehler*(hN/n.nenner) < e.zaehler*(hN/e.nenner);
+    int hN= kgV(n.nenner(), e.nenner());
+    return n.zaehler()*(hN/n.nenner()) < e.zaehler()*(hN/e.nenner());
 
 }
+*/
 /**
   * Diese Methode addiert zwei RationalNummers
   **/
+/*
 RationalNumber RationalNumber::rnAdd(RationalNumber n, RationalNumber e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!rnIsValid(n) || !rnIsValid(e)){
@@ -98,17 +104,19 @@ RationalNumber RationalNumber::rnAdd(RationalNumber n, RationalNumber e){
     }
     n = rnCheckNeg(n);
     e = rnCheckNeg(e);
-    if(n.nenner == e.nenner){
-        RationalNumber rn= {n.zaehler+e.zaehler, n.nenner};
+    if(n.nenner() == e.nenner()){
+        RationalNumber rn= {n.zaehler()+e.zaehler(), n.nenner()};
         return rn;
     }
-    int hN= kgV(n.nenner, e.nenner);
-    RationalNumber rn= {(n.zaehler*(hN/n.nenner)) + (e.zaehler*(hN/e.nenner)),hN};
+    int hN= kgV(n.nenner(), e.nenner());
+    RationalNumber rn= {(n.zaehler()*(hN/n.nenner())) + (e.zaehler()*(hN/e.nenner())),hN};
     return rn;
 }
+*/
 /**
   * Diese Methode subtrahiert zwei RationalNumbers
   **/
+/*
 RationalNumber RationalNumber::rnSubtract(RationalNumber n, RationalNumber e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!rnIsValid(n) || !rnIsValid(e)){
@@ -118,17 +126,19 @@ RationalNumber RationalNumber::rnSubtract(RationalNumber n, RationalNumber e){
     }
     n = rnCheckNeg(n);
     e = rnCheckNeg(e);
-    if(n.nenner == e.nenner){
-        RationalNumber rn = {n.zaehler-e.zaehler, n.nenner};
+    if(n.nenner() == e.nenner()){
+        RationalNumber rn = {n.zaehler()-e.zaehler(), n.nenner()};
         return rn;
     }
-    int hN= kgV(n.nenner, e.nenner);
-    RationalNumber rn = {(n.zaehler*(hN/n.nenner)) - (e.zaehler*(hN/e.nenner)),hN};
+    int hN= kgV(n.nenner(), e.nenner());
+    RationalNumber rn = {(n.zaehler()*(hN/n.nenner())) - (e.zaehler()*(hN/e.nenner())),hN};
     return rn;
 }
+*/
 /**
   * Diese Methode multipliziert zwei RationalNumbers
   **/
+/*
 RationalNumber RationalNumber::rnMultiply(RationalNumber n, RationalNumber e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!rnIsValid(n) || !rnIsValid(e)){
@@ -140,12 +150,14 @@ RationalNumber RationalNumber::rnMultiply(RationalNumber n, RationalNumber e){
     n = rnCheckNeg(n);
     e = rnCheckNeg(e);
 
-    RationalNumber rn = {n.zaehler*e.zaehler,n.nenner*e.nenner};
+    RationalNumber rn = {n.zaehler()*e.zaehler(),n.nenner()*e.nenner()};
     return rn;
 }
+*/
 /**
   * Diese Methode dividiert zwei RationalNumbers
   **/
+/*
 RationalNumber RationalNumber::rnDivide(RationalNumber n, RationalNumber e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!rnIsValid(n) || !rnIsValid(e)){
@@ -154,9 +166,10 @@ RationalNumber RationalNumber::rnDivide(RationalNumber n, RationalNumber e){
         return rn;
     }
 
-    RationalNumber rn = {e.nenner,e.zaehler};
+    RationalNumber rn = {e.nenner(),e.zaehler()};
     return rnMultiply(n,rn);
 }
+*/
 
 
 

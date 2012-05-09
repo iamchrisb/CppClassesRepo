@@ -19,6 +19,9 @@ class RationalNumber {
     RationalNumber rnMultiply(RationalNumber n, RationalNumber e);
     RationalNumber rnDivide(RationalNumber n, RationalNumber e);
 
+    int zaehler() const { return m_zaehler;}
+    int nenner() const { return m_nenner;}
+
 };
 
 
