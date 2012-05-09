@@ -10,8 +10,8 @@ class RationalNumber {
     public:
     RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
     public:
-    bool rnIsValid(RationalNumber n);
-    bool rnIsNaN(RationalNumber n);
+    bool rnIsValid();
+    bool rnIsNaN();
     bool rnEqual(RationalNumber n, RationalNumber e);
     bool rnLessThan(RationalNumber n, RationalNumber e);
     RationalNumber rnAdd(RationalNumber n, RationalNumber e);
