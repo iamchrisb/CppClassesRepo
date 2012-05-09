@@ -136,22 +136,22 @@ RationalNumber RationalNumber::sub(RationalNumber &e){
 /**
   * Diese Methode multipliziert zwei RationalNumbers
   **/
-/*
-RationalNumber RationalNumber::rnMultiply(RationalNumber n, RationalNumber e){
+
+RationalNumber RationalNumber::mul(RationalNumber &e){
     //Ueberpruefung der Rationalnumbers e und n
-    if(!rnIsValid(n) || !rnIsValid(e)){
+    if(!isValid() || !e.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
-        RationalNumber rn = {0,0};
+        RationalNumber rn = (0,0);
         return rn;
     }
 
-    n = rnCheckNeg(n);
-    e = rnCheckNeg(e);
+    checkNeg();
+    e = e.checkNeg();
 
-    RationalNumber rn = {n.zaehler()*e.zaehler(),n.nenner()*e.nenner()};
+    RationalNumber rn (m_zaehler*e.zaehler(),m_nenner*e.nenner());
     return rn;
 }
-*/
+
 /**
   * Diese Methode dividiert zwei RationalNumbers
   **/

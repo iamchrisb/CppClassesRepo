@@ -42,14 +42,25 @@ int main()
     //assert( !n3.equal(n0) );
     assert( n4.equal(n3) );
 
-    nadd1.add(nadd2).printRN();
+    //nadd1.add(nadd2).printRN();
+
+    /** Test Add **/
     assert( nadd1.add(nadd2).equal(nresult));
 
+
+    /** Test Sub **/
     RationalNumber rsub1(3,4);
     RationalNumber rsub2(1,4);
     RationalNumber rsubresult(2,4);
 
     assert(rsub1.sub(rsub2).equal(rsubresult));
+
+    /** Test Mul **/
+    RationalNumber rmul1(2,5);
+    RationalNumber rmul2(1,3);
+    RationalNumber rmulresult(2,15);
+
+    assert (rmul1.mul(rmul2).equal(rmulresult));
 /*
     assert( rnEqual( n2, n3) );
     assert( rnEqual( rnAdd(n1,n1), n2) );

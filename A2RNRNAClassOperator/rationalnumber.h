@@ -25,7 +25,7 @@ class RationalNumber {
     //bool rnLessThan(RationalNumber n, RationalNumber e);
 
     RationalNumber sub(RationalNumber &e);
-    //RationalNumber rnMultiply(RationalNumber n, RationalNumber e);
+    RationalNumber mul(RationalNumber &e);
     //RationalNumber rnDivide(RationalNumber n, RationalNumber e);
 
     void printRN();
