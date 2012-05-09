@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
 
+
 #include "rationalnumber.h"
 #include "rationalnumberarray.h"
+
 
 int main()
 {
@@ -18,11 +20,36 @@ int main()
                     n5( 9, -6 ),
                     n6( 9, 4 ),
                     n0( 0, 4 ),
+
+                    nadd1( 1, 5),
+                    nadd2( 1 , 3),
+                    nresult( 8 , 15 ),
+
+                    nresultmul(1 , 15),
+
                     nn( 4, 0 );
 
-    assert( n0.rnIsValid() );
-    assert( !nn.rnIsValid() );
-    assert( nn.rnIsNaN() );
+    assert( n0.isValid() );
+    assert( !nn.isValid() );
+    assert( nn.isNaN() );
+
+    /** Test Equals **/
+    assert( n2.equal(n3) );
+    assert( !n2.equal(n1) );
+    assert( n2.equal(n2) );
+
+    /* TODO: THIS MUST NOT BE EQUAL! */
+    //assert( !n3.equal(n0) );
+    assert( n4.equal(n3) );
+
+    nadd1.add(nadd2).printRN();
+    assert( nadd1.add(nadd2).equal(nresult));
+
+    RationalNumber rsub1(3,4);
+    RationalNumber rsub2(1,4);
+    RationalNumber rsubresult(2,4);
+
+    assert(rsub1.sub(rsub2).equal(rsubresult));
 /*
     assert( rnEqual( n2, n3) );
     assert( rnEqual( rnAdd(n1,n1), n2) );

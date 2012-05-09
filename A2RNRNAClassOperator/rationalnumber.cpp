@@ -1,28 +1,29 @@
 #include <iostream>
 #include "rationalnumber.h"
-
+#include <stdio.h>
 
 /**
   * Diese Methode ueberprueft ob eine RationalNumber negativ oder positiv ist.
   * Sind Zaehler und Nenner negativ so wird n positiv gemacht
   * Ist die Negation im Nenner so wird sie zum Zaehler getauscht.
   **/
-RationalNumber rnCheckNeg(RationalNumber n){
+RationalNumber RationalNumber::checkNeg(){
     //
-    if(n.zaehler()<0 && n.nenner()<0){
-        RationalNumber rn(n.zaehler()*-1, n.nenner()*-1);
+    if(m_zaehler<0 && m_nenner<0){
+        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
         return rn;
     }
-    if(n.zaehler()>0 && n.nenner()<0){
-        RationalNumber rn(n.zaehler()*-1, n.nenner()*-1);
+    if(m_zaehler>0 && m_nenner<0){
+        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
         return rn;
     }
-    return n;
+    RationalNumber rn(m_zaehler,m_nenner);
+    return rn;
 }
 /**
   * Diese Methode berechnet den groeßten gemeinsamen Teiler zweier nenner
   **/
-int ggT(int nenner1, int nenner2){
+int RationalNumber::ggT(int nenner1, int nenner2){
     if(nenner2 == 0){
         return nenner1;
     }
@@ -31,13 +32,13 @@ int ggT(int nenner1, int nenner2){
 /**
   * Diese Methode berechnet das kleinste gemeinsame Vielfache zweier nenner
   **/
-int kgV(int nenner1, int nenner2){
+int RationalNumber::kgV(int nenner1, int nenner2){
     return (nenner1*nenner2)/ggT(nenner1, nenner2);
 }
 /**
   * Diese Methode ueberprueft ob eine RationalNumber valide ist. Dazu darf der Nenner nicht 0 sein.
   **/
-bool RationalNumber::rnIsValid(){
+bool RationalNumber::isValid(){
     if(nenner() == 0){
         return false;
     }
@@ -46,8 +47,8 @@ bool RationalNumber::rnIsValid(){
 /**
   * Diese Methode ueberprueft ob eine RationalNumber Not a Number also keine RationalNumber ist.
   **/
-bool RationalNumber::rnIsNaN(){
-    if(rnIsValid()){
+bool RationalNumber::isNaN(){
+    if(isValid()){
         return false;
     }
     return true;
@@ -56,20 +57,18 @@ bool RationalNumber::rnIsNaN(){
 /**
   * Diese Methode ueberprueft ob zwei RationalNumbers gleich sind, also auch den gleichen Wert haben.
   **/
-/*
-bool RationalNumber::rnEqual(RationalNumber e){
-    //Ueberpruefung der Rationalnumbers e und n
-    if(!this.rnIsValid() || !e.rnIsValid()){
+bool RationalNumber::equal(RationalNumber &e){
+    //Ueberpruefung der Rationalnumbers e
+    if(!isValid() || !e.isValid()){
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
-    if(nenner() == nenner()){
-        return zaehler()==zaehler();
+    if(m_nenner == e.nenner()){
+        return m_zaehler== e.zaehler();
     }
-    int hN= kgV(this.nenner(), e.nenner());
-    return zaehler()*(hN/nenner()) == zaehler()*(hN/nenner());
+    int hN = kgV(m_nenner, e.nenner());
+    return m_zaehler*(hN/m_nenner) == e.zaehler()*(hN / e.nenner());
 }
-*/
 /**
   * Diese Methode checked ob n kleiner e ist.
   **/
@@ -93,48 +92,47 @@ bool RationalNumber::rnLessThan(RationalNumber e){
 /**
   * Diese Methode addiert zwei RationalNummers
   **/
-/*
-RationalNumber RationalNumber::rnAdd(RationalNumber n, RationalNumber e){
+RationalNumber RationalNumber::add(RationalNumber &n){
     //Ueberpruefung der Rationalnumbers e und n
-    if(!rnIsValid(n) || !rnIsValid(e)){
+    if(!isValid() || !n.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
-        RationalNumber rn = {0,0};
+        RationalNumber rn(0,0);
         return rn;
 
     }
-    n = rnCheckNeg(n);
-    e = rnCheckNeg(e);
-    if(n.nenner() == e.nenner()){
-        RationalNumber rn= {n.zaehler()+e.zaehler(), n.nenner()};
+    n = n.checkNeg();
+    checkNeg();
+
+    if(n.nenner() == m_nenner){
+        RationalNumber rn ( n.zaehler() + m_zaehler , n.nenner() );
         return rn;
     }
-    int hN= kgV(n.nenner(), e.nenner());
-    RationalNumber rn= {(n.zaehler()*(hN/n.nenner())) + (e.zaehler()*(hN/e.nenner())),hN};
+    int hN = kgV( m_nenner , n.nenner());
+    RationalNumber rn (m_zaehler * (hN / m_nenner) + (n.zaehler() * (hN / n.nenner())),hN);
     return rn;
 }
-*/
 /**
   * Diese Methode subtrahiert zwei RationalNumbers
   **/
-/*
-RationalNumber RationalNumber::rnSubtract(RationalNumber n, RationalNumber e){
+
+RationalNumber RationalNumber::sub(RationalNumber &e){
     //Ueberpruefung der Rationalnumbers e und n
-    if(!rnIsValid(n) || !rnIsValid(e)){
+    if(!isValid() || !e.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
-        RationalNumber rn = {0,0};
+        RationalNumber rn (0,0);
         return rn;
     }
-    n = rnCheckNeg(n);
-    e = rnCheckNeg(e);
-    if(n.nenner() == e.nenner()){
-        RationalNumber rn = {n.zaehler()-e.zaehler(), n.nenner()};
+    e = e.checkNeg();
+    checkNeg();
+    if(m_nenner == e.nenner()){
+        RationalNumber rn (m_zaehler-e.zaehler(), m_nenner);
         return rn;
     }
-    int hN= kgV(n.nenner(), e.nenner());
-    RationalNumber rn = {(n.zaehler()*(hN/n.nenner())) - (e.zaehler()*(hN/e.nenner())),hN};
+    int hN= kgV(m_nenner, e.nenner());
+    RationalNumber rn ((m_zaehler*(hN/m_nenner)) - (e.zaehler()*(hN/e.nenner())),hN);
     return rn;
 }
-*/
+
 /**
   * Diese Methode multipliziert zwei RationalNumbers
   **/
@@ -171,5 +169,7 @@ RationalNumber RationalNumber::rnDivide(RationalNumber n, RationalNumber e){
 }
 */
 
-
+void RationalNumber::printRN(){
+    printf("%d / %d" , m_zaehler , m_nenner);
+}
 

@@ -9,6 +9,7 @@
 /**
   * Deklarataion des RationalNumberArrays
   **/
+/*
 struct RationalNumberArray{
     RationalNumber *data;
     int size;
@@ -18,9 +19,11 @@ struct RationalNumberArray{
     //Pointer auf Callback Funktion
     void (*rnaCallbackFunction)(RationalNumberArray*);
 };
+*/
 /**
   * Erzeugt ein RationalnumberArray und gibt den Pointer darauf zurueck
   **/
+/*
 RationalNumberArray* rnaCreate(int capacity){
     //Pointer auf RNA
     RationalNumberArray *rna = (RationalNumberArray*) malloc(sizeof(RationalNumberArray));
@@ -48,16 +51,20 @@ RationalNumberArray* rnaCreate(int capacity){
 
     return rna;
 }
+*/
 /**
   *Löscht rna durch durch Speicherfreigabe
   **/
+/*
 void rnaDelete(RationalNumberArray *rna){
     free(rna->data);
     free(rna);
 }
+*/
 /**
   * Vergroeßert oder verkleinert rna bis capacity
   **/
+/*
 void rnaResize(RationalNumberArray* rna, int capacity){
     //Wenn Werte vom Benutzer weggeschmissen werden
     if(rna->size > capacity){
@@ -66,21 +73,27 @@ void rnaResize(RationalNumberArray* rna, int capacity){
     rna->capacity=capacity;
     realloc(rna->data, capacity*sizeof(RationalNumber));
 }
+*/
 /**
   *Gibt die belegte Groeße von rna zurueck
   **/
+/*
 int rnaSize(RationalNumberArray* rna){
     return rna->size;
 }
+*/
 /**
   *Gibt die Kapazitaet von rna zurueck
   **/
+/*
 int rnaCapacity(RationalNumberArray* rna){
     return rna->capacity;
 }
+*/
 /**
   *Fuegt ein Element an rna an
   **/
+/*
 void rnaAdd(RationalNumberArray* rna, RationalNumber* rn){
     //Nicht wenn rn 0 oder NAN ist
     if(rn==0|| rnIsNaN(*rn)){
@@ -101,9 +114,11 @@ void rnaAdd(RationalNumberArray* rna, RationalNumber* rn){
         rna->data[rna->size].fromUser = true;
     }
 }
+*/
 /**
   *Fuegt in rna eine RationalNumber(RN) ein an position
   **/
+/*
 void rnaSet(RationalNumberArray* rna, RationalNumber* rn, int position){
     //Nicht wenn rn 0 oder NAN ist
     if(rn==0 || rnIsNaN(*rn)){
@@ -134,9 +149,11 @@ void rnaSet(RationalNumberArray* rna, RationalNumber* rn, int position){
         rna->size = position+1;
     }
 }
+*/
 /**
   * Gibt den Pointer auf die RationalNumber an Position zurueck
   **/
+/*
 RationalNumber* rnaGet(RationalNumberArray* rna, int position){
     //Wenn position außerhalb der Kapazitaet Fehler setzen und 0 zurueckgeben
     if(position>rna->size){
@@ -148,9 +165,11 @@ RationalNumber* rnaGet(RationalNumberArray* rna, int position){
     }
     return &(rna->data[position]);
 }
+*/
 /**
   *Löscht Werte aus dem RationalNumberArray von fromPosition bis tillPosition
   **/
+/*
 void rnaRemove(RationalNumberArray *rna, int fromPosition, int tillPosition){
     int temp = fromPosition;
     //Überschreiben der zu löschenden Werte durch lineare Verschiebung der Werte nach der tillPosition
@@ -166,17 +185,22 @@ void rnaRemove(RationalNumberArray *rna, int fromPosition, int tillPosition){
         rnaResize(rna, rnaCapacity(rna)/2);
     }
 }
+*/
 /**
   *Error setzen und pointer darauf zurueckgeben
   **/
+/*
 errorTypes* rnaError(RationalNumberArray *rna){
     return &(rna->error);
 }
+*/
 /**
   *Diese Methode dient dazu, dass wenn ein Fehler auftritt ein Callback stattfinden kann,
   *unter der Vorraussetzung, dass eine Methode geschrieben wurde, die dann ausgefuehrt werden soll.
   *Diese Methode wäre die auf der der Callback stattfindet.
   **/
+/*
 void rnaErrorCallback(RationalNumberArray* rna, void (*rnaCallbackFunction)(RationalNumberArray*)){
     rna->rnaCallbackFunction = rnaCallbackFunction;
 }
+*/
