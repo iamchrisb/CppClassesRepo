@@ -9,10 +9,8 @@
   **/
 namespace rnum {
 
-RationalNumber::RationalNumber(){}
-
 RationalNumber RationalNumber::checkNeg(){
-    //
+
     if(m_zaehler<0 && m_nenner<0){
         RationalNumber rn(m_zaehler*-1, m_nenner*-1);
         return rn;

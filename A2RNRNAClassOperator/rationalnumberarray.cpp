@@ -5,12 +5,15 @@
 #include <stdio.h>
 
 namespace rnum {
-/** Constructor **/
+/**
+  * Erzeugt ein RationalnumberArray und gibt den Pointer darauf zurueck
+  **/
 RationalNumberArray::RationalNumberArray(int capacity=5)
-    :m_capacity(capacity)
-{
-   this->m_data = new RationalNumber[capacity];
-          m_size =0;}
+    : m_data(new RationalNumber[capacity]),
+      m_size(0),
+      m_capacity(capacity)
+      //m_error(0)
+{}
 
 //Copy Constructor
 RationalNumberArray::RationalNumberArray(const RationalNumberArray& r ) {
@@ -19,13 +22,14 @@ RationalNumberArray::RationalNumberArray(const RationalNumberArray& r ) {
     }
 }
 
+/**
+  *Löscht rna durch durch Speicherfreigabe
+  **/
 RationalNumberArray::~RationalNumberArray(){
     delete[] m_data;
 }
 
-/**
-  * Erzeugt ein RationalnumberArray und gibt den Pointer darauf zurueck
-  **/
+
 /*
 RationalNumberArray* rnaCreate(int capacity){
     //Pointer auf RNA
@@ -55,56 +59,46 @@ RationalNumberArray* rnaCreate(int capacity){
     return rna;
 }
 */
-/**
-  *Löscht rna durch durch Speicherfreigabe
-  **/
-/*
-void rnaDelete(RationalNumberArray *rna){
-    free(rna->data);
-    free(rna);
-}
-*/
+
 /**
   * Vergroeßert oder verkleinert rna bis capacity
   **/
 
 void RationalNumberArray::resize(unsigned int i){
-    //Wenn Werte vom Benutzer weggeschmissen werden
+    //Wenn Werte vom Benutzer weggeschmissen
+    RationalNumber * rn_temp = new RationalNumber[i];
 
-   // RationalNumber * rn_temp = new RationalNumber[i];
-
-    /*
-    if(m_size > i){
-        m_size = i;
+    for (int var = 0; var < i; ++var) {
+        rn_temp[i] = m_data[i];
     }
-    m_capacity=i;
-    RationalNumberArray(i);
-    */
+
+    m_data = rn_temp;
+    delete[] rn_temp;
 }
 
 /**
   *Gibt die belegte Groeße von rna zurueck
   **/
-/*
-int rnaSize(RationalNumberArray* rna){
-    return rna->size;
+
+int RationalNumberArray::getSize(){
+    return m_size;
 }
-*/
+
 /**
   *Gibt die Kapazitaet von rna zurueck
   **/
-/*
-int rnaCapacity(RationalNumberArray* rna){
-    return rna->capacity;
+
+int RationalNumberArray::getCapacity(){
+    return m_capacity;
 }
-*/
+
 /**
   *Fuegt ein Element an rna an
   **/
 /*
-void rnaAdd(RationalNumberArray* rna, RationalNumber* rn){
+void push(RationalNumber& rn){
     //Nicht wenn rn 0 oder NAN ist
-    if(rn==0|| rnIsNaN(*rn)){
+    if(rn==0|| rn.isNaN()){
         //Fehler setzen
         rna->error= NoRN;
         if(rna->rnaCallbackFunction!=0){

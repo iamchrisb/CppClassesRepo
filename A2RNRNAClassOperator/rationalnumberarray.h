@@ -28,14 +28,11 @@ public:
     RationalNumberArray(int capacity);
     RationalNumberArray(const RationalNumberArray& r );
     void resize(unsigned int i);
+    int getCapacity();
+    int getSize();
+    void push(RationalNumber& rn);
 
 /*
-RationalNumberArray* rnaCreate(int capacity);
-void rnaDelete(RationalNumberArray* rna);
-void rnaResize(RationalNumberArray* rna, int capacity);
-int rnaSize(RationalNumberArray* rna);
-int rnaCapacity(RationalNumberArray* rna);
-void rnaAdd(RationalNumberArray* rna, RationalNumber* rn);
 void rnaSet(RationalNumberArray* rna, RationalNumber* rn, int position);
 RationalNumber* rnaGet(RationalNumberArray* rna, int position);
 void rnaRemove(RationalNumberArray* rna, int fromPosition, int tillPosition);
