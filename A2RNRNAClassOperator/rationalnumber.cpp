@@ -96,7 +96,7 @@ bool RationalNumber::lessThan(RationalNumber &e){
   * Diese Methode addiert zwei RationalNummers
   **/
 RationalNumber RationalNumber::add(RationalNumber &n){
-    //Ueberpruefung der Rationalnumbers e und n
+    //Ueberpruefung der Rationalnumbers n
     if(!isValid() || !n.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         RationalNumber rn(0,0);
@@ -144,7 +144,7 @@ RationalNumber RationalNumber::mul(RationalNumber &e){
     //Ueberpruefung der Rationalnumbers e und n
     if(!isValid() || !e.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
-        RationalNumber rn = (0,0);
+        RationalNumber rn(0,0);
         return rn;
     }
 
@@ -172,4 +172,106 @@ RationalNumber RationalNumber::div(RationalNumber &e){
 void RationalNumber::printRN(){
     printf("%d / %d" , m_zaehler , m_nenner);
 }
+
+/** operator overloading **/
+
+RationalNumber RationalNumber::operator +( RationalNumber & n) {
+    //Ueberpruefung der Rationalnumbers n
+    if(!isValid() || !n.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn(0,0);
+        return rn;
+
+    }
+    n = n.checkNeg();
+    checkNeg();
+
+    if(n.nenner() == m_nenner){
+        RationalNumber rn ( n.zaehler() + m_zaehler , n.nenner() );
+        return rn;
+    }
+    int hN = kgV( m_nenner , n.nenner());
+    RationalNumber rn (m_zaehler * (hN / m_nenner) + (n.zaehler() * (hN / n.nenner())),hN);
+    return rn;
+}
+
+RationalNumber RationalNumber::operator +(int i){
+    RationalNumber e(i , 1);
+    //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn (0,0);
+        return rn;
+    }
+    e = e.checkNeg();
+    checkNeg();
+    if(m_nenner == e.nenner()){
+        RationalNumber rn (m_zaehler-e.zaehler(), m_nenner);
+        return rn;
+    }
+    int hN= kgV(m_nenner, e.nenner());
+    RationalNumber rn ((m_zaehler*(hN/m_nenner)) - (e.zaehler()*(hN/e.nenner())),hN);
+    return rn;
+}
+
+RationalNumber RationalNumber::operator -(RationalNumber& e){
+    //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn (0,0);
+        return rn;
+    }
+    e = e.checkNeg();
+    checkNeg();
+    if(m_nenner == e.nenner()){
+        RationalNumber rn (m_zaehler-e.zaehler(), m_nenner);
+        return rn;
+    }
+    int hN= kgV(m_nenner, e.nenner());
+    RationalNumber rn ((m_zaehler*(hN/m_nenner)) - (e.zaehler()*(hN/e.nenner())),hN);
+    return rn;
+}
+
+RationalNumber RationalNumber::operator *(RationalNumber& e){
+    //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn(0,0);
+        return rn;
+    }
+
+    checkNeg();
+    e = e.checkNeg();
+
+    RationalNumber rn (m_zaehler*e.zaehler(),m_nenner*e.nenner());
+    return rn;
+}
+
+RationalNumber RationalNumber::operator /(RationalNumber& e){
+    //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht
+        RationalNumber rn (0,0);
+        return rn;
+    }
+
+    RationalNumber rn (e.nenner(),e.zaehler());
+    return mul(rn);
+}
+
+RationalNumber RationalNumber::operator ==(RationalNumber& e){
+    //Ueberpruefung der Rationalnumbers e
+    checkNeg();
+    e.checkNeg();
+    if(!isValid() || !e.isValid()){
+        //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        return false;
+    }
+    if(m_nenner == e.nenner()){
+        return m_zaehler== e.zaehler();
+    }
+    int hN = kgV(m_nenner, e.nenner());
+    return m_zaehler*(hN/m_nenner) == e.zaehler()*(hN / e.nenner());
+}
+
 }

@@ -28,6 +28,25 @@ class RationalNumber {
     RationalNumber mul(RationalNumber &e);
     RationalNumber div(RationalNumber &e);
 
+    /** operator overloading**/
+
+    /* const fehlen */
+
+    RationalNumber operator+( RationalNumber& other);
+    RationalNumber operator+( int other);
+
+    RationalNumber operator-( RationalNumber& other);
+    RationalNumber operator-( int other);
+
+    RationalNumber operator*( RationalNumber& other);
+    RationalNumber operator*( int other);
+
+    RationalNumber operator/( RationalNumber& other);
+    RationalNumber operator/( int other);
+
+    RationalNumber operator==( RationalNumber& other);
+    RationalNumber operator==( int other);
+
     void printRN();
     int zaehler() const { return m_zaehler;}
     int nenner() const { return m_nenner;}
