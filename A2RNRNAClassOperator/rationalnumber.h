@@ -14,7 +14,9 @@ class RationalNumber {
     int kgV(int , int );
 
     public:
-    RationalNumber(){}
+
+    RationalNumber();
+
     RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
     ~RationalNumber(){}
 

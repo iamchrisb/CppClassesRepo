@@ -4,22 +4,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+namespace rnum {
+/** Constructor **/
+RationalNumberArray::RationalNumberArray(int capacity=5)
+    :m_capacity(capacity)
+{
+   this->m_data = new RationalNumber[capacity];
+          m_size =0;}
 
+//Copy Constructor
+RationalNumberArray::RationalNumberArray(const RationalNumberArray& r ) {
+    for (int i = 0; i < r.m_size; ++i) {
+        m_data[i] = r.m_data[i];
+    }
+}
 
-/**
-  * Deklarataion des RationalNumberArrays
-  **/
-/*
-struct RationalNumberArray{
-    RationalNumber *data;
-    int size;
-    int capacity;
-    //FehlerTypen siehe enum errorTypes im Header
-    errorTypes error;
-    //Pointer auf Callback Funktion
-    void (*rnaCallbackFunction)(RationalNumberArray*);
-};
-*/
+RationalNumberArray::~RationalNumberArray(){
+    delete[] m_data;
+}
+
 /**
   * Erzeugt ein RationalnumberArray und gibt den Pointer darauf zurueck
   **/
@@ -64,16 +67,21 @@ void rnaDelete(RationalNumberArray *rna){
 /**
   * Vergroeßert oder verkleinert rna bis capacity
   **/
-/*
-void rnaResize(RationalNumberArray* rna, int capacity){
+
+void RationalNumberArray::resize(unsigned int i){
     //Wenn Werte vom Benutzer weggeschmissen werden
-    if(rna->size > capacity){
-        rna->size = capacity;
+
+   // RationalNumber * rn_temp = new RationalNumber[i];
+
+    /*
+    if(m_size > i){
+        m_size = i;
     }
-    rna->capacity=capacity;
-    realloc(rna->data, capacity*sizeof(RationalNumber));
+    m_capacity=i;
+    RationalNumberArray(i);
+    */
 }
-*/
+
 /**
   *Gibt die belegte Groeße von rna zurueck
   **/
@@ -204,3 +212,4 @@ void rnaErrorCallback(RationalNumberArray* rna, void (*rnaCallbackFunction)(Rati
     rna->rnaCallbackFunction = rnaCallbackFunction;
 }
 */
+}

@@ -8,6 +8,9 @@
   * Ist die Negation im Nenner so wird sie zum Zaehler getauscht.
   **/
 namespace rnum {
+
+RationalNumber::RationalNumber(){}
+
 RationalNumber RationalNumber::checkNeg(){
     //
     if(m_zaehler<0 && m_nenner<0){

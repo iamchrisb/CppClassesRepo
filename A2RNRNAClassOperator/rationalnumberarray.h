@@ -24,11 +24,10 @@ private:
 public:
 
     RationalNumberArray(){}
-    ~RationalNumberArray(){}
-
-    RationalNumberArray(int capacity=5):m_size(0),m_capacity(capacity){
-
-    }
+    ~RationalNumberArray();
+    RationalNumberArray(int capacity);
+    RationalNumberArray(const RationalNumberArray& r );
+    void resize(unsigned int i);
 
 /*
 RationalNumberArray* rnaCreate(int capacity);
