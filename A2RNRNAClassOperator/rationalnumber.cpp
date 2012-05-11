@@ -155,20 +155,17 @@ RationalNumber RationalNumber::mul(RationalNumber &e){
 /**
   * Diese Methode dividiert zwei RationalNumbers
   **/
-/*
-RationalNumber RationalNumber::rnDivide(RationalNumber n, RationalNumber e){
+RationalNumber RationalNumber::div(RationalNumber &e){
     //Ueberpruefung der Rationalnumbers e und n
-    if(!rnIsValid(n) || !rnIsValid(e)){
+    if(!isValid() || !e.isValid()){
         //0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht
-        RationalNumber rn = {0,0};
+        RationalNumber rn (0,0);
         return rn;
     }
 
-    RationalNumber rn = {e.nenner(),e.zaehler()};
-    return rnMultiply(n,rn);
+    RationalNumber rn (e.nenner(),e.zaehler());
+    return mul(rn);
 }
-*/
-
 void RationalNumber::printRN(){
     printf("%d / %d" , m_zaehler , m_nenner);
 }

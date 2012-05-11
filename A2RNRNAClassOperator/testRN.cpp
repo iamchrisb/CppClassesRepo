@@ -61,6 +61,14 @@ int main()
     RationalNumber rmulresult(2,15);
 
     assert (rmul1.mul(rmul2).equal(rmulresult));
+
+    /** Test Div **/
+
+    RationalNumber rdiv1(1,5);
+    RationalNumber rdiv2(1,3);
+    RationalNumber rdivresult(3,5);
+
+    assert(rdiv1.div(rdiv2).equal(rdivresult));
 /*
     assert( rnEqual( n2, n3) );
     assert( rnEqual( rnAdd(n1,n1), n2) );

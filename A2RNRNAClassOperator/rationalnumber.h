@@ -26,7 +26,7 @@ class RationalNumber {
 
     RationalNumber sub(RationalNumber &e);
     RationalNumber mul(RationalNumber &e);
-    //RationalNumber rnDivide(RationalNumber n, RationalNumber e);
+    RationalNumber div(RationalNumber &e);
 
     void printRN();
     int zaehler() const { return m_zaehler;}
