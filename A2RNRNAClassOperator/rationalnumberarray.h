@@ -22,18 +22,21 @@ private:
     void (*rnaCallbackFunction)(RationalNumberArray*);
 
 public:
-
-    RationalNumberArray(){}
-    ~RationalNumberArray();
+    // Default Constructor
     RationalNumberArray(int capacity);
+    //Copy Constructor
     RationalNumberArray(const RationalNumberArray& r );
+    //Deconstructor
+    ~RationalNumberArray();
+
     void resize(unsigned int i);
-    int getCapacity();
-    int getSize();
-    void push(RationalNumber& rn);
+    int const getCapacity();
+    int const getSize();
+    void append(RationalNumber& rn);
+    void set(RationalNumber& rn, int position);
+
 
 /*
-void rnaSet(RationalNumberArray* rna, RationalNumber* rn, int position);
 RationalNumber* rnaGet(RationalNumberArray* rna, int position);
 void rnaRemove(RationalNumberArray* rna, int fromPosition, int tillPosition);
 
