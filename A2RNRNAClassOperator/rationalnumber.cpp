@@ -7,6 +7,7 @@
   * Sind Zaehler und Nenner negativ so wird n positiv gemacht
   * Ist die Negation im Nenner so wird sie zum Zaehler getauscht.
   **/
+namespace rnum {
 RationalNumber RationalNumber::checkNeg(){
     //
     if(m_zaehler<0 && m_nenner<0){
@@ -170,4 +171,4 @@ RationalNumber RationalNumber::div(RationalNumber &e){
 void RationalNumber::printRN(){
     printf("%d / %d" , m_zaehler , m_nenner);
 }
-
+}

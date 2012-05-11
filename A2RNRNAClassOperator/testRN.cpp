@@ -5,6 +5,8 @@
 #include "rationalnumber.h"
 #include "rationalnumberarray.h"
 
+using namespace rnum;
+
 
 int main()
 {
@@ -73,13 +75,8 @@ int main()
     RationalNumber rless2(-1,2);
 
     assert(rless2.lessThan(rless1));
-/*
-    assert( rnEqual( n2, n3) );
-    assert( rnEqual( rnAdd(n1,n1), n2) );
-    assert( rnEqual( n2,n4) );
-    assert( !rnEqual( n4,n5) );
-    assert( rnLessThan( n5,n3) );
 
+/*
     RationalNumber t1 = rnAdd(n1,n2);
     RationalNumber t2 = rnDivide(n3,n3);
     RationalNumber t3 = rnDivide(n2,n2);

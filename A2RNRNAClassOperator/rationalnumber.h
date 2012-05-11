@@ -1,6 +1,7 @@
 #ifndef RATIONALNUMBER_H
 #define RATIONALNUMBER_H
 
+namespace rnum {
 class RationalNumber {
     private:
 
@@ -13,7 +14,10 @@ class RationalNumber {
     int kgV(int , int );
 
     public:
+    RationalNumber(){}
     RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
+    ~RationalNumber(){}
+
     public:
 
     bool isValid();
@@ -31,7 +35,7 @@ class RationalNumber {
     int nenner() const { return m_nenner;}
 
 };
-
+}
 
 
 #endif // RATIONALNUMBER_H
