@@ -21,9 +21,7 @@ class RationalNumber {
     bool equal(RationalNumber &n);
 
     RationalNumber add(RationalNumber &n);
-
-    //bool rnLessThan(RationalNumber n, RationalNumber e);
-
+    bool lessThan(RationalNumber &e);
     RationalNumber sub(RationalNumber &e);
     RationalNumber mul(RationalNumber &e);
     RationalNumber div(RationalNumber &e);

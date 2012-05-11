@@ -38,11 +38,8 @@ int main()
     assert( !n2.equal(n1) );
     assert( n2.equal(n2) );
 
-    /* TODO: THIS MUST NOT BE EQUAL! */
-    //assert( !n3.equal(n0) );
+    assert( !n3.equal(n0) );
     assert( n4.equal(n3) );
-
-    //nadd1.add(nadd2).printRN();
 
     /** Test Add **/
     assert( nadd1.add(nadd2).equal(nresult));
@@ -69,6 +66,13 @@ int main()
     RationalNumber rdivresult(3,5);
 
     assert(rdiv1.div(rdiv2).equal(rdivresult));
+
+    /** Test less **/
+
+    RationalNumber rless1(-2 , -5);
+    RationalNumber rless2(-1,2);
+
+    assert(rless2.lessThan(rless1));
 /*
     assert( rnEqual( n2, n3) );
     assert( rnEqual( rnAdd(n1,n1), n2) );

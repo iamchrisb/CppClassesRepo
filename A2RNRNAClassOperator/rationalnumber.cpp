@@ -59,6 +59,8 @@ bool RationalNumber::isNaN(){
   **/
 bool RationalNumber::equal(RationalNumber &e){
     //Ueberpruefung der Rationalnumbers e
+    checkNeg();
+    e.checkNeg();
     if(!isValid() || !e.isValid()){
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
@@ -72,23 +74,22 @@ bool RationalNumber::equal(RationalNumber &e){
 /**
   * Diese Methode checked ob n kleiner e ist.
   **/
-/*
-bool RationalNumber::rnLessThan(RationalNumber e){
-    this = rnCheckNeg(this);
-    e = rnCheckNeg(e);
+
+bool RationalNumber::lessThan(RationalNumber &e){
+    checkNeg();
+    e.checkNeg();
     //Ueberpruefung der Rationalnumbers e und n
-    if(!this.rnIsValid() || !e.rnIsValid()){
+    if(!isValid() || !e.isValid()){
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
-    if(nenner() == e.nenner()){
-        return zaehler() < e.zaehler();
+    if(m_nenner == e.nenner()){
+        return m_zaehler < e.zaehler();
     }
-    int hN= kgV(n.nenner(), e.nenner());
-    return n.zaehler()*(hN/n.nenner()) < e.zaehler()*(hN/e.nenner());
-
+    int hN= kgV(m_nenner, e.nenner());
+    return m_zaehler*(hN/m_nenner) < e.zaehler()*(hN/e.nenner());
 }
-*/
+
 /**
   * Diese Methode addiert zwei RationalNummers
   **/
