@@ -7,7 +7,6 @@ class RationalNumber {
 
     int m_zaehler;
     int m_nenner;
-    bool m_fromUser;
 
     RationalNumber checkNeg();
     int ggT(int , int );
@@ -50,6 +49,9 @@ class RationalNumber {
     void printRN();
     int zaehler() const { return m_zaehler;}
     int nenner() const { return m_nenner;}
+
+    void zaehler(int bzaehler) { m_zaehler=bzaehler; }
+    void nenner(int bnenner) { m_nenner=bnenner;}
 
 };
 }

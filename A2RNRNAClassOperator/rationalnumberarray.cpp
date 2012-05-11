@@ -84,8 +84,6 @@ void RationalNumberArray::append(RationalNumber& rn){
         }
         //ans Ende anfuegen
         m_data[m_size++] = rn;
-        //Flag ob Wert von Benutzer eingetragen
-       // m_data[m_size].fromUser() = true;
     }
 }
 
