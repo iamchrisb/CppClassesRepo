@@ -2,6 +2,11 @@
 #include "rationalnumber.h"
 #include <stdio.h>
 
+#include <string>
+#include <sstream>
+
+using namespace std;
+
 /**
   * Diese Methode ueberprueft ob eine RationalNumber negativ oder positiv ist.
   * Sind Zaehler und Nenner negativ so wird n positiv gemacht
@@ -175,7 +180,7 @@ void RationalNumber::printRN(){
 
 /** operator overloading **/
 
-RationalNumber RationalNumber::operator +( RationalNumber & n) {
+RationalNumber RationalNumber::operator +( RationalNumber & n){
     //Ueberpruefung der Rationalnumbers n
     if(!isValid() || !n.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
@@ -195,7 +200,7 @@ RationalNumber RationalNumber::operator +( RationalNumber & n) {
     return rn;
 }
 
-RationalNumber RationalNumber::operator +(int i){
+RationalNumber RationalNumber::operator +(int i) {
     RationalNumber e(i , 1);
     //Ueberpruefung der Rationalnumbers e und n
     if(!isValid() || !e.isValid()){
@@ -214,8 +219,36 @@ RationalNumber RationalNumber::operator +(int i){
     return rn;
 }
 
+RationalNumber RationalNumber::operator+( double other){
+    int dPow = getDigits(other);
+    int nD = pow(10 , dPow);
+    RationalNumber rn(other*nD , nD);
+    rn.printRN();
+    return add(rn);
+}
+
 RationalNumber RationalNumber::operator -(RationalNumber& e){
     //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn (0,0);
+        return rn;
+    }
+    e = e.checkNeg();
+    checkNeg();
+    if(m_nenner == e.nenner()){
+        RationalNumber rn (m_zaehler-e.zaehler(), m_nenner);
+        return rn;
+    }
+    int hN= kgV(m_nenner, e.nenner());
+    RationalNumber rn ((m_zaehler*(hN/m_nenner)) - (e.zaehler()*(hN/e.nenner())),hN);
+    return rn;
+}
+
+RationalNumber RationalNumber::operator -(const int i){
+
+    RationalNumber e(i , 1);
+
     if(!isValid() || !e.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         RationalNumber rn (0,0);
@@ -247,8 +280,41 @@ RationalNumber RationalNumber::operator *(RationalNumber& e){
     return rn;
 }
 
+RationalNumber RationalNumber::operator *(const int i){
+    //Ueberpruefung der Rationalnumbers e und n
+
+    RationalNumber e(i,1);
+
+    if(!isValid() || !e.isValid()){
+        //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        RationalNumber rn(0,0);
+        return rn;
+    }
+
+    checkNeg();
+    e = e.checkNeg();
+
+    RationalNumber rn (m_zaehler*e.zaehler(),m_nenner*e.nenner());
+    return rn;
+}
+
 RationalNumber RationalNumber::operator /(RationalNumber& e){
     //Ueberpruefung der Rationalnumbers e und n
+    if(!isValid() || !e.isValid()){
+        //0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht
+        RationalNumber rn (0,0);
+        return rn;
+    }
+
+    RationalNumber rn (e.nenner(),e.zaehler());
+    return mul(rn);
+}
+
+RationalNumber RationalNumber::operator /(const int i){
+    //Ueberpruefung der Rationalnumbers e und n
+
+    RationalNumber e(i,1);
+
     if(!isValid() || !e.isValid()){
         //0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht
         RationalNumber rn (0,0);
@@ -272,6 +338,46 @@ RationalNumber RationalNumber::operator ==(RationalNumber& e){
     }
     int hN = kgV(m_nenner, e.nenner());
     return m_zaehler*(hN/m_nenner) == e.zaehler()*(hN / e.nenner());
+}
+
+RationalNumber RationalNumber::operator ==(const int i){
+    //Ueberpruefung der Rationalnumbers e
+
+    RationalNumber e(i,1);
+
+    checkNeg();
+    e.checkNeg();
+    if(!isValid() || !e.isValid()){
+        //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
+        return false;
+    }
+    if(m_nenner == e.nenner()){
+        return m_zaehler== e.zaehler();
+    }
+    int hN = kgV(m_nenner, e.nenner());
+    return m_zaehler*(hN/m_nenner) == e.zaehler()*(hN / e.nenner());
+}
+
+int RationalNumber::getDigits(double d) {
+    stringstream ss;
+    string s;
+    size_t pos;
+
+    ss<<d;
+    s = (ss.str());
+    pos = s.find(".");
+    s = s.substr(pos);
+    return s.length()-1;
+}
+
+int RationalNumber::pow(int i , int powindex){
+    int stay = i;
+    powindex--;
+    while(powindex != 0){
+        stay *= i;
+        powindex--;
+    }
+    return stay;
 }
 
 }

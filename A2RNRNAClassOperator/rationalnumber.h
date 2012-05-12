@@ -5,6 +5,9 @@ namespace rnum {
 class RationalNumber {
     private:
 
+    int getDigits(double);
+    int pow(int , int powindex);
+
     int m_zaehler;
     int m_nenner;
 
@@ -31,8 +34,9 @@ class RationalNumber {
 
     /* const fehlen */
 
-    RationalNumber operator+( RationalNumber& other);
+    RationalNumber operator+( RationalNumber& other) ;
     RationalNumber operator+( int other);
+    RationalNumber operator+( double other);
 
     RationalNumber operator-( RationalNumber& other);
     RationalNumber operator-( int other);
