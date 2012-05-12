@@ -91,7 +91,7 @@ void RationalNumberArray::append(RationalNumber& rn){
   *Fuegt in rna eine RationalNumber(RN) ein an position
   **/
 
-void RationalNumberArray::set(RationalNumber& rn, int position){
+void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
     //Nicht wenn rn 0 oder NAN ist
     //abfrage mit null angucken
     if(rn.isNaN()){
@@ -122,55 +122,55 @@ void RationalNumberArray::set(RationalNumber& rn, int position){
 /**
   * Gibt den Pointer auf die RationalNumber an Position zurueck
   **/
-/*
-RationalNumber* rnaGet(RationalNumberArray* rna, int position){
+//Frank fragen referenz und rückgabe wenn fehler
+RationalNumber RationalNumberArray::get(unsigned int position){
     //Wenn position außerhalb der Kapazitaet Fehler setzen und 0 zurueckgeben
-    if(position>rna->size){
-        rna->error= OutOfBounds;
-        if(rna->rnaCallbackFunction!=0){
-            rna->rnaCallbackFunction;
-        }
-        return 0;
+    if(position>m_size){
+        m_error= OutOfBounds;
+       // if(rna->rnaCallbackFunction!=0){
+         //   rna->rnaCallbackFunction;
+        //}
+        return RationalNumber(0,0);
     }
-    return &(rna->data[position]);
+    return m_data[position];
 }
-*/
+
 /**
   *Löscht Werte aus dem RationalNumberArray von fromPosition bis tillPosition
   **/
-/*
-void rnaRemove(RationalNumberArray *rna, int fromPosition, int tillPosition){
+
+void RationalNumberArray::remove(unsigned int fromPosition, unsigned int tillPosition){
     int temp = fromPosition;
     //Überschreiben der zu löschenden Werte durch lineare Verschiebung der Werte nach der tillPosition
-    for(int i= tillPosition; i< rna->size;i++){
-        rna->data[temp] = rna->data[i];
+    for(int i= tillPosition; i< m_size;i++){
+        m_data[temp] = m_data[i];
         temp=temp+1;
     }
     //zum Verkleinern der Size ausrechnen um wieviel diese kleiner wird
     int count = tillPosition-fromPosition;
-    rna->size = rna->size - count;
+    m_size = m_size - count;
     //Wenn die Kapazitaet im Verhältnis zur eigentlich vergebenen Größe zu hoch ist diese verkleinern
-    if(rnaCapacity(rna)>2*rna->size+1){
-        rnaResize(rna, rnaCapacity(rna)/2);
+    if(getCapacity()>2*m_size+1){
+        resize(getCapacity()/2);
     }
 }
-*/
+
 /**
   *Error setzen und pointer darauf zurueckgeben
   **/
-/*
-errorTypes* rnaError(RationalNumberArray *rna){
-    return &(rna->error);
+
+errorTypes& RationalNumberArray::error(){
+    return m_error;
 }
-*/
+
 /**
   *Diese Methode dient dazu, dass wenn ein Fehler auftritt ein Callback stattfinden kann,
   *unter der Vorraussetzung, dass eine Methode geschrieben wurde, die dann ausgefuehrt werden soll.
   *Diese Methode wäre die auf der der Callback stattfindet.
   **/
-/*
-void rnaErrorCallback(RationalNumberArray* rna, void (*rnaCallbackFunction)(RationalNumberArray*)){
-    rna->rnaCallbackFunction = rnaCallbackFunction;
+
+void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*)){
+    this->rnaCallbackFunction = rnaCallbackFunction;
 }
-*/
+
 }

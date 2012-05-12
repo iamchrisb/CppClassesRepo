@@ -33,14 +33,17 @@ public:
     int const getCapacity();
     int const getSize();
     void append(RationalNumber& rn);
-    void set(RationalNumber& rn, int position);
-
+    void set(RationalNumber& rn,unsigned int position);
+    RationalNumber get(unsigned int position);
+    void remove(unsigned int fromPosition, unsigned int tillPosition);
+    errorTypes& error();
+    void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
 
 /*
-RationalNumber* rnaGet(RationalNumberArray* rna, int position);
-void rnaRemove(RationalNumberArray* rna, int fromPosition, int tillPosition);
 
-errorTypes* rnaError(RationalNumberArray *rna);
+
+
+
 void rnaErrorCallback(RationalNumberArray* rna, void (*rnaCallbackFunction)(RationalNumberArray*));
 */
 };
