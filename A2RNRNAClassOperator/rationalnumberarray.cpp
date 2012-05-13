@@ -175,8 +175,9 @@ void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalN
     this->rnaCallbackFunction = rnaCallbackFunction;
 }
  /** THE = OPERATOR **/
-void RationalNumberArray::operator =( const RationalNumberArray& rna) const{
+RationalNumberArray& RationalNumberArray::operator =( const RationalNumberArray& rna) {
     RationalNumberArray(rna);
+    return *this;
 }
 
 /** THE [] OPERATOR **/

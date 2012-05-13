@@ -40,7 +40,7 @@ public:
     errorTypes& error();
     void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
 
-    void operator=(const RationalNumberArray& rna) const ;
+    RationalNumberArray& operator=(const RationalNumberArray& rna);
     const RationalNumber& operator[](int i) const ;
 /*
 
