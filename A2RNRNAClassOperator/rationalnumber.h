@@ -13,10 +13,12 @@ class RationalNumber {
     int m_nenner;
 
     RationalNumber checkNeg() const;
-    RationalNumber toDouble(const double) const;
+    RationalNumber fromDouble(const double) const;
 
     public:
 
+    RationalNumber(int i);
+    RationalNumber(double d);
     RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
     ~RationalNumber(){}
 
@@ -36,7 +38,7 @@ class RationalNumber {
 
     RationalNumber operator+(const RationalNumber& other) const ;
     RationalNumber operator+(const int other) const;
-    RationalNumber operator+( double other) ;
+    RationalNumber operator+(const double other) const;
 
     RationalNumber operator -() const;
     RationalNumber operator-(const RationalNumber& other) const;

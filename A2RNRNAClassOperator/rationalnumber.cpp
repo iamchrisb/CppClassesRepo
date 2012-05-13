@@ -17,47 +17,17 @@ int kgV(int , int );
   * Ist die Negation im Nenner so wird sie zum Zaehler getauscht.
   **/
 
-RationalNumber RationalNumber::cancel() const {
-    int gInt = 0;
+        /** THE CONSTRUCTORS **/
+RationalNumber::RationalNumber(int i)
+    :
+      m_zaehler(i),
+      m_nenner(1)
+{}
 
-    RationalNumber tmp (m_zaehler , m_nenner);
-
-    gInt = ggT(tmp.m_zaehler , tmp.m_nenner);
-
-    tmp.m_nenner = tmp.m_nenner / gInt;
-    tmp.m_zaehler = tmp.m_zaehler / gInt;
-
-    return tmp;
+RationalNumber::RationalNumber(double d){
+    *this = fromDouble(d);
 }
 
-RationalNumber RationalNumber::checkNeg() const{
-
-    if(m_zaehler<0 && m_nenner<0){
-        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
-        return rn;
-    }
-    if(m_zaehler>0 && m_nenner<0){
-        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
-        return rn;
-    }
-    RationalNumber rn(m_zaehler,m_nenner);
-    return rn;
-}
-/**
-  * Diese Methode berechnet den groeßten gemeinsamen Teiler zweier nenner
-  **/
-int ggT(int nenner1, int nenner2){
-    if(nenner2 == 0){
-        return nenner1;
-    }
-    return ggT(nenner2, nenner1%nenner2);
-}
-/**
-  * Diese Methode berechnet das kleinste gemeinsame Vielfache zweier nenner
-  **/
-int kgV(int nenner1, int nenner2){
-    return (nenner1*nenner2)/ggT(nenner1, nenner2);
-}
 /**
   * Diese Methode ueberprueft ob eine RationalNumber valide ist. Dazu darf der Nenner nicht 0 sein.
   **/
@@ -210,8 +180,8 @@ RationalNumber RationalNumber::operator +(const int i) const {
     return this->add(e);
 }
 
-RationalNumber RationalNumber::operator+( double other) {
-    RationalNumber rn = toDouble(other);
+RationalNumber RationalNumber::operator+(const double other) const{
+    RationalNumber rn = fromDouble(other);
     return this->add(rn);
 }
 
@@ -264,6 +234,8 @@ bool RationalNumber::operator ==(const int i) const{
     return equal(e);
 }
 
+        /** SOME HELPER FUNCTIONS **/
+
 int RationalNumber::getDigits(const double d) const{
     stringstream ss;
     string s;
@@ -285,9 +257,55 @@ int RationalNumber::pow(int i , int powindex) const{
     }
     return stay;
 }
-RationalNumber RationalNumber::toDouble(const double other) const{
+RationalNumber RationalNumber::fromDouble(const double other) const{
     int dPow = getDigits(other);
     int nD = pow(10 , dPow);
     RationalNumber rn(other*nD , nD);
     return rn;
+}
+
+
+RationalNumber RationalNumber::cancel() const {
+    int gInt = 0;
+
+    RationalNumber tmp (m_zaehler , m_nenner);
+
+    gInt = ggT(tmp.m_zaehler , tmp.m_nenner);
+
+    tmp.m_nenner = tmp.m_nenner / gInt;
+    tmp.m_zaehler = tmp.m_zaehler / gInt;
+
+    return tmp;
+}
+
+RationalNumber RationalNumber::checkNeg() const{
+
+    if(m_zaehler<0 && m_nenner<0){
+        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
+        return rn;
+    }
+    if(m_zaehler>0 && m_nenner<0){
+        RationalNumber rn(m_zaehler*-1, m_nenner*-1);
+        return rn;
+    }
+    RationalNumber rn(m_zaehler,m_nenner);
+    return rn;
+}
+
+        /** OUT OF RATIONALNUMBERCLASS **/
+
+/**
+  * Diese Methode berechnet den groeßten gemeinsamen Teiler zweier nenner
+  **/
+int ggT(int nenner1, int nenner2){
+    if(nenner2 == 0){
+        return nenner1;
+    }
+    return ggT(nenner2, nenner1%nenner2);
+}
+/**
+  * Diese Methode berechnet das kleinste gemeinsame Vielfache zweier nenner
+  **/
+int kgV(int nenner1, int nenner2){
+    return (nenner1*nenner2)/ggT(nenner1, nenner2);
 }
