@@ -279,14 +279,31 @@ bool RationalNumber::operator>=(const double other) const{
     return !lessThan(rd) || equal(rd);
 }
 
-bool RationalNumber::operator=(const RationalNumber& other) const{
-
+bool RationalNumber::operator<(const RationalNumber& other) const{
+    return lessThan(other);
 }
-bool RationalNumber::operator=(const int other) const{
 
+bool RationalNumber::operator<(const int other) const{
+    RationalNumber ri(other,1);
+    return lessThan(ri);
 }
-bool RationalNumber::operator=(const double other) const{
+bool RationalNumber::operator<(const double other) const{
+    RationalNumber rd(other);
+    return lessThan(rd);
+}
 
+RationalNumber RationalNumber::operator=(const RationalNumber& other) const{
+    return other;
+}
+
+RationalNumber RationalNumber::operator=(const int other) const{
+    RationalNumber ri(other,1);
+    return ri;
+}
+
+RationalNumber RationalNumber::operator=(const double other) const{
+    RationalNumber rd(other);
+    return rd;
 }
 
         /** SOME HELPER FUNCTIONS **/

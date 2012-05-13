@@ -67,9 +67,13 @@ class RationalNumber {
     bool operator>=(const int other) const;
     bool operator>=(const double other) const;
 
-    bool operator=(const RationalNumber& other) const;
-    bool operator=(const int other) const;
-    bool operator=(const double other) const;
+    bool operator<(const RationalNumber& other) const;
+    bool operator<(const int other) const;
+    bool operator<(const double other) const;
+
+    RationalNumber operator=(const RationalNumber& other) const;
+    RationalNumber operator=(const int other) const;
+    RationalNumber operator=(const double other) const;
 
 
     void printRN();
