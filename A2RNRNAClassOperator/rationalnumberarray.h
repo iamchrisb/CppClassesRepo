@@ -21,6 +21,7 @@ private:
     //Pointer auf Callback Funktion
     void (*rnaCallbackFunction)(RationalNumberArray*);
 
+    bool operator==(const RationalNumberArray& rna) const ;
 public:
     // Default Constructor
     RationalNumberArray(int capacity);
@@ -39,6 +40,8 @@ public:
     errorTypes& error();
     void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
 
+    void operator=(const RationalNumberArray& rna) const ;
+    const RationalNumber& operator[](int i) const ;
 /*
 
 

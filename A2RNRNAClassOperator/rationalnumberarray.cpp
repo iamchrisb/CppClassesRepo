@@ -24,6 +24,9 @@ RationalNumberArray::RationalNumberArray(const RationalNumberArray& r ) {
     for (int i = 0; i < r.m_size; ++i) {
         m_data[i] = r.m_data[i];
     }
+    m_size = r.m_size;
+    m_capacity = r.m_capacity;
+    m_error = r.m_error;
 }
 
 /**
@@ -171,5 +174,13 @@ errorTypes& RationalNumberArray::error(){
 void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*)){
     this->rnaCallbackFunction = rnaCallbackFunction;
 }
+ /** THE = OPERATOR **/
+void RationalNumberArray::operator =( const RationalNumberArray& rna) const{
+    RationalNumberArray(rna);
+}
 
+/** THE [] OPERATOR **/
+const RationalNumber& RationalNumberArray::operator[](int i) const {
+    return m_data[i];
+}
 }
