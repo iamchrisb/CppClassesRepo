@@ -201,6 +201,11 @@ RationalNumber RationalNumber::operator -(const int i) const{
     return *this-(e);
 }
 
+RationalNumber RationalNumber::operator-(const double other) const{
+    RationalNumber rd (other);
+    return *this-(rd);
+}
+
         /** THE * OPERATOR **/
 
 RationalNumber RationalNumber::operator *(const RationalNumber& e) const{
@@ -209,18 +214,28 @@ RationalNumber RationalNumber::operator *(const RationalNumber& e) const{
 
 RationalNumber RationalNumber::operator *(const int i) const{
     RationalNumber e(i,1);
-    return mul(e);
+    return *this*(e);
+}
+
+RationalNumber RationalNumber::operator *(const double d) const{
+    RationalNumber e(d);
+    return *this*(e);
 }
 
         /** THE / OPERATOR **/
 
 RationalNumber RationalNumber::operator /(const RationalNumber& e) const{
-    return this->div(e);
+    return *this/(e);
 }
 
 RationalNumber RationalNumber::operator /(const int i) const{
     RationalNumber e(i,1);
-    return this->div(e);
+    return *this/(e);
+}
+
+RationalNumber RationalNumber::operator /(const double d) const{
+    RationalNumber e(d);
+    return *this/(d);
 }
 
         /** THE == OPERATOR **/
@@ -232,6 +247,46 @@ bool RationalNumber::operator ==(const RationalNumber& e) const{
 bool RationalNumber::operator ==(const int i) const{
     RationalNumber e(i,1);
     return equal(e);
+}
+
+bool RationalNumber::operator ==(const double d) const{
+    RationalNumber e(d);
+    return equal(e);
+}
+
+bool RationalNumber::operator<=(const RationalNumber& other) const{
+    return lessThan(other) || equal(other);
+}
+bool RationalNumber::operator<=(const int other) const{
+    RationalNumber ri(other,1);
+    return lessThan(ri) || equal(ri);
+}
+bool RationalNumber::operator<=(const double other) const{
+    RationalNumber rd(other);
+    return lessThan(rd) || equal(rd);
+}
+
+bool RationalNumber::operator>=(const RationalNumber& other) const{
+    return !lessThan(other) || equal(other);
+}
+
+bool RationalNumber::operator>=(const int other) const{
+    RationalNumber ri(other,1);
+    return !lessThan(ri) || equal(ri);
+}
+bool RationalNumber::operator>=(const double other) const{
+    RationalNumber rd(other);
+    return !lessThan(rd) || equal(rd);
+}
+
+bool RationalNumber::operator=(const RationalNumber& other) const{
+
+}
+bool RationalNumber::operator=(const int other) const{
+
+}
+bool RationalNumber::operator=(const double other) const{
+
 }
 
         /** SOME HELPER FUNCTIONS **/

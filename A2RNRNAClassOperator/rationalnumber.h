@@ -34,7 +34,7 @@ class RationalNumber {
 
     /** operator overloading**/
 
-    /* const fehlen */
+    /** arithmetic **/
 
     RationalNumber operator+(const RationalNumber& other) const ;
     RationalNumber operator+(const int other) const;
@@ -43,15 +43,34 @@ class RationalNumber {
     RationalNumber operator -() const;
     RationalNumber operator-(const RationalNumber& other) const;
     RationalNumber operator-(const int other) const;
+    RationalNumber operator-(const double other) const;
 
     RationalNumber operator*(const RationalNumber& other) const;
     RationalNumber operator*(const int other) const;
+    RationalNumber operator*(const double other) const;
 
     RationalNumber operator/(const RationalNumber& other) const;
     RationalNumber operator/(const int other) const;
+    RationalNumber operator/(const double other) const;
+
+    /** compare **/
 
     bool operator==(const RationalNumber& other) const;
     bool operator==(const int other) const;
+    bool operator==(const double other) const;
+
+    bool operator<=(const RationalNumber& other) const;
+    bool operator<=(const int other) const;
+    bool operator<=(const double other) const;
+
+    bool operator>=(const RationalNumber& other) const;
+    bool operator>=(const int other) const;
+    bool operator>=(const double other) const;
+
+    bool operator=(const RationalNumber& other) const;
+    bool operator=(const int other) const;
+    bool operator=(const double other) const;
+
 
     void printRN();
 
