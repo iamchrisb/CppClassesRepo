@@ -6,7 +6,7 @@
 
 namespace rnum {
 /**
-  * Defauˆt Konstruktor des RationalNumberArrays
+  * Default Konstruktor des RationalNumberArrays
   **/
 RationalNumberArray::RationalNumberArray(int capacity=5)
     : m_data(new RationalNumber[capacity]),
@@ -39,17 +39,16 @@ RationalNumberArray::~RationalNumberArray(){
 /**
   * Vergroeﬂert oder verkleinert rna bis capacity
   **/
-// Frank fragen (wenn groeﬂer machen, delete-aufruf)
 void RationalNumberArray::resize(unsigned int i){
     //Wenn Werte vom Benutzer weggeschmissen
     RationalNumber * rn_temp = new RationalNumber[i];
 
     for (int var = 0; var < i; ++var) {
-        rn_temp[i] = m_data[i];
+        rn_temp[var] = m_data[var];
     }
+    delete[] m_data;
+    m_data = rn_temp;
 
-    *m_data = *rn_temp;
-    delete[] rn_temp;
 }
 
 /**
@@ -74,10 +73,9 @@ void RationalNumberArray::append(RationalNumber& rn){
     if(rn.isNaN()){
         //Fehler setzen
         m_error = NoRN;
-        //Callbackfunktion ist auskommentiert
-   //     if(rnaCallbackFunction!=0){
-     //       rnaCallbackFunction();
-       // }
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
     }else{
         //Berechnung der freien Stellen, wenn 0 dann Kapazitaet erhoehen
         int count = m_capacity-m_size;
@@ -100,9 +98,9 @@ void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
         //Fehler setzen
         m_error= NoRN;
 
-//        if(rna->rnaCallbackFunction!=0){
-//            rna->rnaCallbackFunction;
-//        }
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
     }else{
         //Groeﬂe erhoehen, falls position auﬂerhalb von der aktuellen Kapazitaet
         if(m_capacity < position){
@@ -129,9 +127,9 @@ RationalNumber RationalNumberArray::get(unsigned int position){
     //Wenn position auﬂerhalb der Kapazitaet Fehler setzen und 0 zurueckgeben
     if(position>m_size){
         m_error= OutOfBounds;
-       // if(rna->rnaCallbackFunction!=0){
-         //   rna->rnaCallbackFunction;
-        //}
+        if(rna->rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
         return RationalNumber(0,0);
     }
     return m_data[position];
@@ -176,7 +174,12 @@ void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalN
 }
  /** THE = OPERATOR **/
 RationalNumberArray& RationalNumberArray::operator =( const RationalNumberArray& rna) {
-    RationalNumberArray(rna);
+    for (int i = 0; i < rna.m_size; ++i) {
+        m_data[i] = rna.m_data[i];
+    }
+    m_size = rna.m_size;
+    m_capacity = rna.m_capacity;
+    m_error = rna.m_error;
     return *this;
 }
 
