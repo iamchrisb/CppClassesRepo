@@ -68,7 +68,6 @@ int const RationalNumberArray::getCapacity(){
   **/
 void RationalNumberArray::append(RationalNumber& rn){
     //Nicht wenn rn 0 oder NAN ist
-     //abfrage mit null angucken
     if(rn.isNaN()){
         //Fehler setzen
         m_error = NoRN;

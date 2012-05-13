@@ -1,18 +1,19 @@
 #ifndef RATIONALNUMBER_H
 #define RATIONALNUMBER_H
 
-//namespace rnum {
+namespace rnum {
 class RationalNumber {
     private:
 
-    int getDigits(double);
-    int pow(int , int powindex);
+    int getDigits(const double) const;
+    int pow(int , int powindex) const;
     RationalNumber cancel() const;
 
     int m_zaehler;
     int m_nenner;
 
     RationalNumber checkNeg() const;
+    RationalNumber toDouble(const double) const;
 
     public:
 
@@ -24,7 +25,7 @@ class RationalNumber {
     bool equal(const RationalNumber &n) const;
 
     RationalNumber add(const RationalNumber &n) const;
-    bool lessThan(RationalNumber &e);
+    bool lessThan(const RationalNumber &e) const;
     RationalNumber sub(const RationalNumber &e) const;
     RationalNumber mul(const RationalNumber &e) const;
     RationalNumber div(const RationalNumber &e) const;
@@ -37,6 +38,7 @@ class RationalNumber {
     RationalNumber operator+(const int other) const;
     RationalNumber operator+( double other) ;
 
+    RationalNumber operator -() const;
     RationalNumber operator-(const RationalNumber& other) const;
     RationalNumber operator-(const int other) const;
 
@@ -60,7 +62,7 @@ class RationalNumber {
     void nenner(int bnenner) { m_nenner=bnenner;}
 
 };
-//}
+}
 
 
 #endif // RATIONALNUMBER_H

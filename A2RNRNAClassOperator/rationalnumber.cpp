@@ -6,7 +6,7 @@
 #include <sstream>
 
 using namespace std;
-//using namespace rnum;
+using namespace rnum;
 
 int ggT(int , int );
 int kgV(int , int );
@@ -99,7 +99,7 @@ bool RationalNumber::equal(const RationalNumber &e) const{
   * Diese Methode checked ob n kleiner e ist.
   **/
 
-bool RationalNumber::lessThan(RationalNumber &e){
+bool RationalNumber::lessThan(const RationalNumber &e) const{
     checkNeg();
     e.checkNeg();
     //Ueberpruefung der Rationalnumbers e und n
@@ -125,7 +125,7 @@ RationalNumber RationalNumber::add(const RationalNumber &n) const {
    return rn;
 
    }
-    //n = n.checkNeg();
+    n.checkNeg();
     checkNeg();
 
     if(n.nenner() == m_nenner){
@@ -142,13 +142,14 @@ RationalNumber RationalNumber::add(const RationalNumber &n) const {
 
 RationalNumber RationalNumber::sub(const RationalNumber &e) const{
     //Ueberpruefung der Rationalnumbers e und n
+    checkNeg();
+    e.checkNeg();
     if(!isValid() || !e.isValid()){
         //cout << "0,0 , da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         RationalNumber rn (0,0);
         return rn;
     }
-    //e = e.checkNeg();
-    checkNeg();
+
     if(m_nenner == e.nenner()){
         RationalNumber rn (m_zaehler-e.zaehler(), m_nenner);
         return rn;
@@ -171,7 +172,7 @@ RationalNumber RationalNumber::mul(const RationalNumber &e) const{
     }
 
     checkNeg();
-    //e = e.checkNeg();
+    e.checkNeg();
 
     RationalNumber rn (m_zaehler*e.zaehler(),m_nenner*e.nenner());
     return rn;
@@ -196,7 +197,9 @@ void RationalNumber::printRN(){
     printf("%d / %d" , m_zaehler , m_nenner);
 }
 
-/** operator overloading **/
+/** OPERATOR OVERLOADING - OPERATOR OVERLOADING **/
+
+        /** THE + OPERATOR **/
 
 RationalNumber RationalNumber::operator +(const RationalNumber & n) const{
     return this->add(n);
@@ -208,10 +211,15 @@ RationalNumber RationalNumber::operator +(const int i) const {
 }
 
 RationalNumber RationalNumber::operator+( double other) {
-    int dPow = getDigits(other);
-    int nD = pow(10 , dPow);
-    RationalNumber rn(other*nD , nD);
+    RationalNumber rn = toDouble(other);
     return this->add(rn);
+}
+
+        /** THE - OPERATOR **/
+
+RationalNumber RationalNumber::operator -() const {
+    RationalNumber tmp(m_zaehler*-1, m_nenner*-1);
+    return tmp;
 }
 
 RationalNumber RationalNumber::operator -(const RationalNumber& e) const{
@@ -220,8 +228,10 @@ RationalNumber RationalNumber::operator -(const RationalNumber& e) const{
 
 RationalNumber RationalNumber::operator -(const int i) const{
     RationalNumber e(i , 1);
-    return sub(e);
+    return *this-(e);
 }
+
+        /** THE * OPERATOR **/
 
 RationalNumber RationalNumber::operator *(const RationalNumber& e) const{
     return mul(e);
@@ -232,6 +242,8 @@ RationalNumber RationalNumber::operator *(const int i) const{
     return mul(e);
 }
 
+        /** THE / OPERATOR **/
+
 RationalNumber RationalNumber::operator /(const RationalNumber& e) const{
     return this->div(e);
 }
@@ -240,6 +252,8 @@ RationalNumber RationalNumber::operator /(const int i) const{
     RationalNumber e(i,1);
     return this->div(e);
 }
+
+        /** THE == OPERATOR **/
 
 bool RationalNumber::operator ==(const RationalNumber& e) const{
     return equal(e);
@@ -250,7 +264,7 @@ bool RationalNumber::operator ==(const int i) const{
     return equal(e);
 }
 
-int RationalNumber::getDigits(double d) {
+int RationalNumber::getDigits(const double d) const{
     stringstream ss;
     string s;
     size_t pos;
@@ -262,7 +276,7 @@ int RationalNumber::getDigits(double d) {
     return s.length()-1;
 }
 
-int RationalNumber::pow(int i , int powindex){
+int RationalNumber::pow(int i , int powindex) const{
     int stay = i;
     powindex--;
     while(powindex != 0){
@@ -270,4 +284,10 @@ int RationalNumber::pow(int i , int powindex){
         powindex--;
     }
     return stay;
+}
+RationalNumber RationalNumber::toDouble(const double other) const{
+    int dPow = getDigits(other);
+    int nD = pow(10 , dPow);
+    RationalNumber rn(other*nD , nD);
+    return rn;
 }
