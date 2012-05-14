@@ -306,6 +306,62 @@ RationalNumber RationalNumber::operator=(const double other) const{
     return rd;
 }
 
+RationalNumber RationalNumber::operator+=(const RationalNumber other) const{
+    return *this+other;
+}
+
+RationalNumber RationalNumber::operator+=(const int other) const{
+    RationalNumber ri(other,1);
+    return *this+ri;
+}
+
+RationalNumber RationalNumber::operator+=(const double other) const{
+    RationalNumber rd(other);
+    return *this+rd;
+}
+
+RationalNumber RationalNumber::operator-=(const RationalNumber other) const{
+    return *this-other;
+}
+
+RationalNumber RationalNumber::operator-=(const int other) const{
+    RationalNumber ri(other, 1);
+    return *this-ri;
+}
+
+RationalNumber RationalNumber::operator-=(const double other) const{
+    RationalNumber rd(other);
+    return *this-rd;
+}
+
+RationalNumber RationalNumber::operator*=(const RationalNumber other) const{
+    return *this*other;
+}
+
+RationalNumber RationalNumber::operator*=(const int other) const{
+    RationalNumber ri(other,1);
+    return *this*ri;
+}
+
+RationalNumber RationalNumber::operator*=(const double other) const {
+    //RationalNumber rd(double);
+    //return this->mul(rd);
+}
+
+RationalNumber RationalNumber::operator/=(const RationalNumber other) const{
+    return *this/other;
+}
+
+RationalNumber RationalNumber::operator/=(const int other) const{
+    RationalNumber ri(other,1);
+    return *this/ri;
+}
+
+RationalNumber RationalNumber::operator/=(const double other) const{
+    RationalNumber rd(other);
+    return *this/rd;
+}
+
         /** SOME HELPER FUNCTIONS **/
 
 int RationalNumber::getDigits(const double d) const{
