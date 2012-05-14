@@ -73,14 +73,20 @@ bool RationalNumber::lessThan(const RationalNumber &e) const{
     checkNeg();
     e.checkNeg();
     //Ueberpruefung der Rationalnumbers e und n
+    cout << "1" << endl;
     if(!isValid() || !e.isValid()){
+        cout << "2" << endl;
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
     if(m_nenner == e.nenner()){
+        cout << "3" << endl;
         return m_zaehler < e.zaehler();
     }
+    cout << "4" << endl;
     int hN= kgV(m_nenner, e.nenner());
+    cout << "m_zahler: " << m_zaehler << " hN:" << hN << "m_nenner" << m_nenner << "e.zaehler():" << e.zaehler()
+         << "e.nenner(): " << e.nenner() << endl;
     return m_zaehler*(hN/m_nenner) < e.zaehler()*(hN/e.nenner());
 }
 
@@ -389,6 +395,7 @@ RationalNumber RationalNumber::fromDouble(const double other) const{
     int dPow = getDigits(other);
     int nD = pow(10 , dPow);
     RationalNumber rn(other*nD , nD);
+    cout << "rn: " << rn.zaehler() << "/" << rn.nenner() << endl;
     return rn;
 }
 

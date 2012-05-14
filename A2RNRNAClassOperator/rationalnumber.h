@@ -15,6 +15,12 @@ class RationalNumber {
     RationalNumber checkNeg() const;
     RationalNumber fromDouble(const double) const;
 
+    RationalNumber add(const RationalNumber &n) const;
+    bool lessThan(const RationalNumber &e) const;
+    RationalNumber sub(const RationalNumber &e) const;
+    RationalNumber mul(const RationalNumber &e) const;
+    RationalNumber div(const RationalNumber &e) const;
+
     public:
 
     RationalNumber(int i);
@@ -26,11 +32,6 @@ class RationalNumber {
     bool isNaN() const;
     bool equal(const RationalNumber &n) const;
 
-    RationalNumber add(const RationalNumber &n) const;
-    bool lessThan(const RationalNumber &e) const;
-    RationalNumber sub(const RationalNumber &e) const;
-    RationalNumber mul(const RationalNumber &e) const;
-    RationalNumber div(const RationalNumber &e) const;
 
     /** operator overloading**/
 
