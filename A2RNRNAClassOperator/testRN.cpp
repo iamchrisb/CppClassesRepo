@@ -10,7 +10,7 @@ using namespace rnum;
 
 int main()
 {
-    //Schirmacher
+
     printf("Performing unit tests for RationalNumber...");
     fflush(stdout);
 
@@ -30,7 +30,14 @@ int main()
                     nresultmul(1 , 15),
 
                     nn( 4, 0 );
-
+    RationalNumberArray rna1(5);
+    RationalNumberArray rna2(5);
+    rna1.set(n0,0);
+    assert(rna1.get(0).equal(n0));
+    rna1.resize(7);
+    rna1.set(n1,6);
+    assert(rna1.get(6).equal(n1));
+    //assert(rna1==rna2);
     assert( n0.isValid() );
     assert( !nn.isValid() );
     assert( nn.isNaN() );

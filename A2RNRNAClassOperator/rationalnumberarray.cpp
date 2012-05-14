@@ -104,7 +104,6 @@ void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
     }else{
         //Groeﬂe erhoehen, falls position auﬂerhalb von der aktuellen Kapazitaet
         if(m_capacity < position){
-        //position vergessen muss mit addiert werden
             resize(2*(m_capacity+position)+1);
             //Auffuellen der Werte bis zur (exclude)Position mit 0,1
             for(int i=m_size; i<position;i++){
@@ -127,7 +126,7 @@ RationalNumber RationalNumberArray::get(unsigned int position){
     //Wenn position auﬂerhalb der Kapazitaet Fehler setzen und 0 zurueckgeben
     if(position>m_size){
         m_error= OutOfBounds;
-        if(rna->rnaCallbackFunction!=0){
+        if(rnaCallbackFunction!=0){
             rnaCallbackFunction(this);
         }
         return RationalNumber(0,0);
