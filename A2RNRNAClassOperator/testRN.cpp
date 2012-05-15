@@ -130,13 +130,14 @@ int main()
 
 
 
-    // Operator -
+    // Operator - , -= , +
     RationalNumber rsub1(3,4);
     RationalNumber rsub2(1,4);
     double dsub2(0.25);
     int nu=0;
     RationalNumber rsubresult(2,4);
-
+    RationalNumber rsubresultneu(2,4);
+    RationalNumber rsub1neu(3,4);
     assert((rsub1-rsub2)==rsubresult);
     assert((rsub1-dsub2)==rsubresult);
     assert((rsub1-nu)== rsub1);
@@ -144,23 +145,58 @@ int main()
     rsub1 -=rsub2;
     rsub1.printRN();
     assert(rsub1 == rsubresult);
-    rsub1 = (3,4);
+    rsub1 = rsubresult + rsub2;
     rsub1 -= dsub2;
     assert(rsub1 == rsubresult);
-    rsub1 = (3,4);
+    rsub1 = rsubresult + rsub2;
     rsub1 -= nu;
 
-    rsub1.printRN();
+    assert(rsub1 == rsub1neu);
+    rsub1 = rsub1neu;
+
+    //Operator +=
+    RationalNumber radd1(2,5);
+    RationalNumber radd2(1,10);
+    double dadd1=0.1;
+    RationalNumber erg1 (1,2);
+    RationalNumber radd1neu(2,5);
+
+
+    radd1+=radd2;
+    assert(radd1 == erg1);
+    radd1 = radd1neu;
+    radd1 +=dadd1;
+    assert(radd1 == erg1);
+    radd1 = radd1neu;
+    radd1 += nu;
+    assert(radd1 == radd1neu);
+
     // Test Operator *
     RationalNumber rmul1(2,5);
     RationalNumber rmul2(1,3);
     double dmul2=0.4;
     int eins=1;
     RationalNumber rmulresult(2,15);
+    RationalNumber rmul1neu(2,5);
+    RationalNumber rmul2neu(1,3);
 
     assert(rmul1*rmul2 == rmulresult);
     assert(rmul2*dmul2 == rmulresult);
     assert(rmul2*eins == rmul2);
+
+    rmul1 *=rmul2;
+    rmul1.printRN();
+    assert(rmul1 == rmulresult);
+    rmul1 = rmul1neu;
+    printf("\n mul1 ");
+    rmul1.printRN();
+    rmul2 *= dmul2;
+    assert(rmul2 == rmulresult);
+    rmul2 = rmul2neu;
+
+    rmul1 *= eins;
+
+    assert(rmul1== rmul1neu);
 
     // Test Operator /
     RationalNumber rdiv1(1,5);
@@ -168,10 +204,22 @@ int main()
     double ddiv1 = 0.5;
     RationalNumber rdiv2(1,3);
     RationalNumber rdivresult(3,5);
-
+    RationalNumber rdiv1neu(1,5);
+    RationalNumber erg = (rdiv1/rdiv3);
     assert((rdiv1/rdiv2) == rdivresult);
-    assert((rdiv1/ddiv1) == (rdiv1/rdiv3) );
+    assert((rdiv1/ddiv1) == erg );
     assert((rdiv1/eins) == rdiv1);
+
+    rdiv1/=rdiv2;
+    rdiv1.printRN();
+    assert(rdiv1 == rdivresult);
+    rdiv1 = rdiv1neu;
+    rdiv1 /= ddiv1;
+    assert(rdiv1 == erg);
+    rdiv1 = rdiv1neu;
+    rdiv1 /= eins;
+
+    assert(rdiv1 == rdiv1neu);
 
     /** Test less **/
 
