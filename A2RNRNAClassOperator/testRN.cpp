@@ -225,6 +225,48 @@ int main()
 
     RationalNumber rless1(-2 , -5);
     RationalNumber rless2(-1,2);
+    RationalNumber rn12(49,-30);
+    RationalNumber rn13(60,1);
+    RationalNumber erg21(-19,30);
+    RationalNumber erg22(59,2);
+    RationalNumber erg23(9,5);
+    RationalNumber erg24(-108,49);
+    RationalNumber erg25(41,10);
+    RationalNumber erg26(-157,30);
+    RationalNumber erg27(302,5);
+    RationalNumber erg28(23,10);
+    double d21 = 3.6;
+
+    //assert((rdiv3+(rdiv1*rdiv2)-(rdivresult/ddiv1)+1)== rn12 );
+
+
+    // Tests mit int,rn double,rn
+    assert((eins*rn12==rn12));
+    assert((30/rdiv3 == rn13));
+    assert((eins+rn12==erg21));
+    assert((30-rdiv3 == erg22));
+    assert((d21* rdiv3 ==erg23 ));
+    assert((d21/rn12==erg24));
+    assert((d21+ rdiv3 == erg25));
+    assert((d21-rn12==erg26));
+    //assert((30/rdiv3 +rless1 == erg27));
+    //assert((d21* rdiv3-rless2 == erg28));
+
+
+    assert(rna1.get(1) == rna1[1]);
+
+    //Test Fehler
+    //rna1[9];
+    //assert(rna1.error() == 2);
+    rna1.get(9);
+    assert(rna1.error()==2);
+    rna1.remove(6, 5);
+    assert(rna1.error()==6);
+    //RationalNumber nn1(5,0);
+    rna1.set(nn,3);
+    assert(rna1.error()==3);
+
+
 
     //assert(rless2.lessThan(rless1));
 
