@@ -49,7 +49,6 @@ void RationalNumberArray::resize(const unsigned int i){
     for (unsigned int var = 0; var < m_size; ++var) {
         m_data[var] = rn_temp[var];
     }
-    m_data = rn_temp;
     delete[] rn_temp;
     m_error = NO_ERROR;
 }
@@ -87,9 +86,9 @@ void RationalNumberArray::append( RationalNumber &rn){
         }
         //ans Ende anfuegen
         printf("\n debug : size: %d \n" , m_size);
-        rn.printRN();
+        //rn.printRN();
         m_data[m_size] = rn;
-        printf("TESTINT MDATA: %d / %d" , m_data[0].zaehler() , m_data[0].nenner());
+        //printf("TESTINT MDATA: %d / %d" , m_data[0].zaehler() , m_data[0].nenner());
         m_size++;
     }
 }
@@ -199,7 +198,7 @@ const RationalNumber& RationalNumberArray::operator[](int i) const {
 
 void RationalNumberArray::printRNA(){
     printf("\n **-- printing RNA --**\n");
-    for(unsigned int i = 0; i < m_size ; i++){
+    for(int i = 0; i < m_size ; i++){
         //printf("printRNA printRNA");
          m_data[i].printRN();
     }

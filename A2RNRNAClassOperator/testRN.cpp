@@ -30,42 +30,83 @@ int main()
                     nresultmul(1 , 15),
 
                     nn( 4, 0 );
-    double d1 = 1.2,
-            d2 = 0.3,
-            d3 = 0.75;
-    int i1 = 1,
-            i2 = 0;
 
+    double          d1 = 1.2,
+                    d2 = 0.3,
+                    d3 = 0.75;
+
+    int             i1 = 1,
+                    i2 = 0,
+                    i3 = 6,
+                    i4 = 11,
+                    i5 = 47;
 
     RationalNumberArray rna1(5);
     RationalNumberArray rna2(5);
 
-    rna1.set(n0,0);
-    //assert(rna1.get(0).equal(n0));
-    rna2.append(n1);
-   // assert(rna2.get(0)==n1);
-  //  rna2.append(n2);
-  //  rna2.append(n3);
-  //  rna2.append(n1);
-  //  rna2.append(n2);
-  //  rna2.append(n3);
-    rna2.printRNA();
-    printf("\n cap : %d , size: %d \n" , rna2.getCapacity() , rna2.getSize());
-    printf("\n ** ende ** \n");
+    // Test Valid & NAN
+    assert( n0.isValid() );
+    assert( !nn.isValid() );
+    assert( nn.isNaN() );
 
-    //Less Than tests
+    // Test Equals
+    assert( n2.equal(n3) );
+    assert( !n2.equal(n1) );
+    assert( n2.equal(n2) );
+
+    assert( !n3.equal(n0) );
+    assert( n4.equal(n3) );
+
+    // Test append with Operator ==
+    rna2.append(n1);
+    assert(rna2.get(0)==n1);
+    rna2.append(n2);
+    assert(rna2.get(1)==n2);
+    rna2.append(n3);
+    assert(rna2.get(2)==n3);
+    rna2.append(n1);
+    assert(rna2.get(3)==n1);
+    rna2.append(n2);
+    assert(rna2.get(4)==n2);
+    rna2.append(n3);
+    assert(rna2.get(5)==n3);
+
+    // Test ob Size und Capacity richtig erhöht wurde
+    assert(rna2.getSize() == i3);
+    assert(rna2.getCapacity() == i4);
+    // Test set-Methode inklusive resize-Aufruf, da position > capacity
+    rna2.set(n0,12);
+    assert(rna2.getCapacity() == i5);
+
+    rna2.printRNA();
+
+    // Test set-Methode
+    rna1.set(n0,0);
+    assert(rna1.get(0).equal(n0));
+
+    // Test resize-Methode und set
+    rna1.resize(7);
+    rna1.set(n1,6);
+    assert(rna1.get(6).equal(n1));
+
+    // Test ob Size und Capacity richtig erhöht wurde
+    assert(rna1.getSize() == (i3+1));
+    assert(rna1.getCapacity() == (i3+1));
+
+
+    // Test Operator <= rn,rn rn,double rn,int
     assert( n1<=n2 );
     assert( n3<=n4 );
     assert( !(n2<=n5) );
 
-    //assert( n1<=d1 );
-    //assert( n1<=d3 );
-    //assert( !(n3<=d2) );
+    assert( n1<=d1 );
+    assert( n1<=d3 );
+    assert( !(n3<=d2) );
 
     assert( n1<=i1 );
     assert( !(n3<=i2) );
 
-    // groessergleich
+    // Test Operator >= rn,rn rn,double rn,int
     assert( !(n1>=n2) );
     assert( n3>=n4 );
     assert( n2>=n5 );
@@ -77,24 +118,7 @@ int main()
     assert( !(n1>=i1) );
     assert( n3>=i2 );
 
-    //rna1.resize(7);
-    //rna1.set(n1,6);
-    //assert(rna1.get(6).equal(n1));
-    //assert(rna1==rna2);
-    assert( n0.isValid() );
-    assert( !nn.isValid() );
-    assert( nn.isNaN() );
 
-    /** Test Equals **/
-    assert( n2.equal(n3) );
-    assert( !n2.equal(n1) );
-    assert( n2.equal(n2) );
-
-    assert( !n3.equal(n0) );
-    assert( n4.equal(n3) );
-
-    /** Test Add **/
-    //assert( nadd1.add(nadd2).equal(nresult));
 
 
     /** Test Sub **/
@@ -102,7 +126,8 @@ int main()
     RationalNumber rsub2(1,4);
     RationalNumber rsubresult(2,4);
 
-    //assert(rsub1.sub(rsub2).equal(rsubresult));
+    assert((rsub1-rsub2)==rsubresult);
+   // assert(());
 
     /** Test Mul **/
     RationalNumber rmul1(2,5);
