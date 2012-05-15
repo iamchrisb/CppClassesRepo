@@ -387,7 +387,49 @@ RationalNumber RationalNumber::operator/=(const double other) {
     return *this;
 }
 
-        /** SOME HELPER FUNCTIONS **/
+                    /** FREE FUNCTIONS **/
+
+rnum::RationalNumber operator+(const int i,const rnum::RationalNumber & rn){
+    RationalNumber ri(i);
+    return ri+rn;
+}
+
+rnum::RationalNumber operator+(const double d,const rnum::RationalNumber & rn){
+    RationalNumber rd(d);
+    return rd+rn;
+}
+
+rnum::RationalNumber operator-(const int i,const rnum::RationalNumber & rn){
+    RationalNumber ri(i);
+    return ri-rn;
+}
+
+rnum::RationalNumber operator-(const double d,const rnum::RationalNumber & rn){
+    RationalNumber rd(d);
+    return rd-rn;
+}
+
+rnum::RationalNumber operator*(const int i,const rnum::RationalNumber & rn){
+    RationalNumber ri(i);
+    return ri*rn;
+}
+
+rnum::RationalNumber operator*(const double d,const rnum::RationalNumber & rn){
+    RationalNumber rd(d);
+    return rd*rn;
+}
+
+rnum::RationalNumber operator/(const int i,const rnum::RationalNumber & rn){
+    RationalNumber ri(i);
+    return ri/rn;
+}
+
+rnum::RationalNumber operator/(const double d,const rnum::RationalNumber & rn){
+    RationalNumber rd(d);
+    return rd/rn;
+}
+
+    /** SOME HELPER FUNCTIONS **/
 
 int RationalNumber::getDigits(const double d) const{
     stringstream ss;
@@ -447,8 +489,9 @@ RationalNumber RationalNumber::checkNeg() const{
 }
 
 double RationalNumber::toDouble(RationalNumber& rn) const {
-    double d = rn.zaehler() / rn.nenner();
-    return d;
+    double dzae = (double) rn.zaehler();
+    double dnen = (double) rn.nenner();
+    return dzae / dnen;
 }
 
         /** OUT OF RATIONALNUMBERCLASS **/

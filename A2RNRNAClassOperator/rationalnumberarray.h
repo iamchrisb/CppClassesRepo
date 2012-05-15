@@ -38,13 +38,10 @@ public:
     RationalNumber get(unsigned int position);
     void remove(unsigned int fromPosition, unsigned int tillPosition);
     errorTypes& error();
-    void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
+    void rnaErrorCallback(void(&rnaCallbackFunction)(RationalNumberArray *));
 
     RationalNumberArray& operator=(const RationalNumberArray& rna);
     RationalNumber& operator[](int i) ;
-
-    int er(){ return m_error; }
-    const int er() const { return m_error; }
 
     void printRNA();
 /*

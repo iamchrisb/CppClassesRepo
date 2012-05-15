@@ -91,6 +91,8 @@ class RationalNumber {
     RationalNumber operator/=(const int other) ;
     RationalNumber operator/=(const double other) ;
 
+    //RationalNumber operator+(const int ,const rnum::RationalNumber &);
+
     void printRN();
 
     int zaehler() { return m_zaehler; }
@@ -104,5 +106,13 @@ class RationalNumber {
 };
 }
 
+rnum::RationalNumber operator+(const int ,const rnum::RationalNumber &);
+rnum::RationalNumber operator+(const double ,const rnum::RationalNumber &);
+rnum::RationalNumber operator-(const int ,const rnum::RationalNumber &);
+rnum::RationalNumber operator-(const double ,const rnum::RationalNumber &);
+rnum::RationalNumber operator*(const int ,const rnum::RationalNumber &);
+rnum::RationalNumber operator*(const double ,const rnum::RationalNumber &);
+rnum::RationalNumber operator/(const int ,const rnum::RationalNumber &);
+rnum::RationalNumber operator/(const double ,const rnum::RationalNumber &);
 
 #endif // RATIONALNUMBER_H

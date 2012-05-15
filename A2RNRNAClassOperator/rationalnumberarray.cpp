@@ -50,7 +50,6 @@ void RationalNumberArray::resize(const unsigned int i){
         m_data[var] = rn_temp[var];
     }
     delete[] rn_temp;
-    m_error = NO_ERROR;
 }
 
 /**
@@ -98,14 +97,15 @@ void RationalNumberArray::append( RationalNumber &rn){
 void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
     //Nicht wenn rn 0 oder NAN ist
     //abfrage mit null angucken
-    if(rn == 0 ) m_error = NULL_POINTER;
-    if(rn.isNaN()){
+    if(rn == 0 ){ m_error = NULL_POINTER; }
+    else if(rn.isNaN()){
         //Fehler setzen
         m_error= NO_RN;
         if(rnaCallbackFunction!=0){
             rnaCallbackFunction(this);
         }
-    }else{
+    }else if(position > m_size){ m_error = OUT_OF_BOUNDS; }
+    else{
         //Groeﬂe erhoehen, falls position auﬂerhalb von der aktuellen Kapazitaet
         if(m_capacity < position){
             resize(2*(m_capacity+position)+1);
@@ -181,7 +181,7 @@ errorTypes& RationalNumberArray::error(){
   *Diese Methode w‰re die auf der der Callback stattfindet.
   **/
 
-void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*)){
+void RationalNumberArray::rnaErrorCallback(void (&rnaCallbackFunction)(RationalNumberArray*)){
     this->rnaCallbackFunction = rnaCallbackFunction;
 }
  /** THE = OPERATOR **/
