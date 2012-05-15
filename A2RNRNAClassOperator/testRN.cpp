@@ -97,11 +97,20 @@ int main()
     rna3.append(n1);
     rna3.append(n2);
     rna3.append(n3);
+
+    rna1 = rna2;
+    printf("\nrna1: ");
+    rna1.printRNA();
+    printf("\nrna2: ");
+    rna2.printRNA();
     printf(" before remove \n");
     rna2.remove(3, rna2.getSize());
     printf(" after remove ErrorCode: %d \n", rna2.error());
     rna2.printRNA();
     rna3.printRNA();
+
+    printf("\nrna1: ");
+    rna1.printRNA();
 
     // Test Operator <= rn,rn rn,double rn,int
     assert( n1<=n2 );
@@ -225,6 +234,7 @@ int main()
 
     RationalNumber rless1(-2 , -5);
     RationalNumber rless2(-1,2);
+    RationalNumber rnerg12(11,30);
     RationalNumber rn12(49,-30);
     RationalNumber rn13(60,1);
     RationalNumber erg21(-19,30);
@@ -232,12 +242,12 @@ int main()
     RationalNumber erg23(9,5);
     RationalNumber erg24(-108,49);
     RationalNumber erg25(41,10);
-    RationalNumber erg26(-157,30);
+    RationalNumber erg26(157,30);
     RationalNumber erg27(302,5);
     RationalNumber erg28(23,10);
     double d21 = 3.6;
 
-    //assert((rdiv3+(rdiv1*rdiv2)-(rdivresult/ddiv1)+1)== rn12 );
+    assert((rdiv3+(rdiv1*rdiv2)-(rdivresult/ddiv1)+1)== rnerg12 );
 
 
     // Tests mit int,rn double,rn
@@ -249,22 +259,22 @@ int main()
     assert((d21/rn12==erg24));
     assert((d21+ rdiv3 == erg25));
     assert((d21-rn12==erg26));
-    //assert((30/rdiv3 +rless1 == erg27));
-    //assert((d21* rdiv3-rless2 == erg28));
+    assert((30/rdiv3 +rless1 == erg27));
+    assert((d21* rdiv3-rless2 == erg28));
 
 
-    assert(rna1.get(1) == rna1[1]);
+    assert(rna2.get(1) == rna2[1]);
 
     //Test Fehler
-    //rna1[9];
-    //assert(rna1.error() == 2);
-    rna1.get(9);
-    assert(rna1.error()==2);
-    rna1.remove(6, 5);
-    assert(rna1.error()==6);
+    rna2[9];
+    assert(rna2.error() == 2);
+    rna2.get(9);
+    assert(rna2.error()==2);
+    rna2.remove(2, 1);
+    assert(rna2.error()==6);
     //RationalNumber nn1(5,0);
-    rna1.set(nn,3);
-    assert(rna1.error()==3);
+    rna2.set(nn,3);
+    assert(rna2.error()==3);
 
 
 

@@ -147,8 +147,14 @@ void RationalNumberArray::remove(unsigned int fromPosition, unsigned int tillPos
     //Überschreiben der zu löschenden Werte durch lineare Verschiebung der Werte nach der tillPosition
     if(fromPosition > m_size || tillPosition > m_size ) {
         m_error = OUT_OF_BOUNDS;
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
     }else if(fromPosition > tillPosition ) {
         m_error = WRONG_PARAMETER_ORDER;
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
     }else{
         for(int i= tillPosition; i< m_size;i++){
             m_data[temp] = m_data[i];
@@ -171,6 +177,9 @@ void RationalNumberArray::remove(unsigned int fromPosition, unsigned int tillPos
 errorTypes& RationalNumberArray::error(){
     if( this == 0 ) {
         m_error = NULL_POINTER;
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
     }
     return m_error;
 }
@@ -197,6 +206,12 @@ RationalNumberArray& RationalNumberArray::operator =( const RationalNumberArray&
 
 /** THE [] OPERATOR **/
 RationalNumber& RationalNumberArray::operator[](int i) {
+    if(i>m_size){
+        m_error= OUT_OF_BOUNDS;
+        if(rnaCallbackFunction!=0){
+            rnaCallbackFunction(this);
+        }
+    }
     return m_data[i];
 }
 
