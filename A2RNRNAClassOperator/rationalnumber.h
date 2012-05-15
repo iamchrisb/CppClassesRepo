@@ -14,7 +14,7 @@ class RationalNumber {
 
     RationalNumber checkNeg() const;
     RationalNumber fromDouble(const double) const;
-    double toDouble(RationalNumber) const;
+    double toDouble(RationalNumber &) const;
 
     RationalNumber add(const RationalNumber &n) const;
     bool lessThan(const RationalNumber &e) const;
@@ -24,7 +24,6 @@ class RationalNumber {
 
     public:
 
-    RationalNumber(int i);
     RationalNumber(double d);
     RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
     ~RationalNumber(){}
@@ -76,19 +75,19 @@ class RationalNumber {
     RationalNumber operator=( int other) ;
     RationalNumber operator=( double other) ;
 
-    RationalNumber operator+=(const RationalNumber other);
+    RationalNumber operator+=(const RationalNumber& other);
     RationalNumber operator+=(const int other) ;
     RationalNumber operator+=(const double other) ;
 
-    RationalNumber operator-=(const RationalNumber other) ;
+    RationalNumber operator-=(const RationalNumber& other) ;
     RationalNumber operator-=(const int other) ;
     RationalNumber operator-=(const double other) ;
 
-    RationalNumber operator*=(const RationalNumber other) ;
+    RationalNumber operator*=(const RationalNumber& other) ;
     RationalNumber operator*=(const int other) ;
     RationalNumber operator*=(const double other) ;
 
-    RationalNumber operator/=(const RationalNumber other) ;
+    RationalNumber operator/=(const RationalNumber& other) ;
     RationalNumber operator/=(const int other) ;
     RationalNumber operator/=(const double other) ;
 

@@ -73,7 +73,7 @@ int const RationalNumberArray::getCapacity() const{
 void RationalNumberArray::append( RationalNumber &rn){
     //Nicht wenn rn 0 oder NAN ist
     if(rn == 0) m_error = NULL_POINTER;
-    if(rn.isNaN()){
+    else if(rn.isNaN()){
         //Fehler setzen
         m_error = NO_RN;
         if(rnaCallbackFunction!=0){

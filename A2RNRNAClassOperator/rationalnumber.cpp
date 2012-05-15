@@ -18,11 +18,6 @@ int kgV(int , int );
   **/
 
         /** THE CONSTRUCTORS **/
-RationalNumber::RationalNumber(int i)
-    :
-      m_zaehler(i),
-      m_nenner(1)
-{}
 
 RationalNumber::RationalNumber(double d){
     *this = fromDouble(d);
@@ -308,60 +303,88 @@ RationalNumber RationalNumber::operator=(const double other) {
     return rd;
 }
 
-RationalNumber RationalNumber::operator+=(const RationalNumber other) {
-    return *this+other;
+RationalNumber RationalNumber::operator+=(const RationalNumber &other) {
+    RationalNumber rn = this->add(other);
+    m_zaehler = rn.zaehler();
+    m_nenner = rn.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator+=(const int other) {
-    RationalNumber ri(other,1);
-    return *this+ri;
+    RationalNumber ri = this->add(other);
+    m_zaehler = ri.zaehler();
+    m_nenner = ri.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator+=(const double other) {
-    RationalNumber rd(other);
-    return *this+rd;
+    RationalNumber rd = this->add(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
-RationalNumber RationalNumber::operator-=(const RationalNumber other) {
-    return *this-other;
+RationalNumber RationalNumber::operator-=(const RationalNumber& other) {
+    RationalNumber rd = this->sub(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator-=(const int other) {
-    RationalNumber ri(other, 1);
-    return *this-ri;
+    RationalNumber rd = this->sub(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator-=(const double other) {
-    RationalNumber rd(other);
-    return *this-rd;
+    RationalNumber rd = this->sub(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
-RationalNumber RationalNumber::operator*=(const RationalNumber other) {
-    return *this*other;
+RationalNumber RationalNumber::operator*=(const RationalNumber& other) {
+    RationalNumber rd = this->mul(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator*=(const int other) {
-    RationalNumber ri(other,1);
-    return *this*ri;
+    RationalNumber rd = this->mul(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator*=(const double other) {
-    RationalNumber rd(other);
-    return *this*rd;
+    RationalNumber rd = this->mul(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
-RationalNumber RationalNumber::operator/=(const RationalNumber other) {
-    return *this/other;
+RationalNumber RationalNumber::operator/=(const RationalNumber& other) {
+    RationalNumber rd = this->div(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator/=(const int other) {
-    RationalNumber ri(other,1);
-    return *this/ri;
+    RationalNumber rd = this->div(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
 RationalNumber RationalNumber::operator/=(const double other) {
-    RationalNumber rd(other);
-    return *this/rd;
+    RationalNumber rd = this->div(other);
+    m_zaehler = rd.zaehler();
+    m_nenner = rd.nenner();
+    return *this;
 }
 
         /** SOME HELPER FUNCTIONS **/
@@ -423,7 +446,7 @@ RationalNumber RationalNumber::checkNeg() const{
     return rn;
 }
 
-double RationalNumber::toDouble(RationalNumber rn) const {
+double RationalNumber::toDouble(RationalNumber& rn) const {
     double d = rn.zaehler() / rn.nenner();
     return d;
 }
