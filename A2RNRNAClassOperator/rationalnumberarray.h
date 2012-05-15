@@ -5,7 +5,7 @@
 
 //Enum fuer die Fehler
 enum errorTypes{
-    OUT_OF_MEMORY, NOT_A_RNA, OUT_OF_BOUNDS, NO_RN, NO_ERROR, NULL_POINTER
+    OUT_OF_MEMORY, NOT_A_RNA, OUT_OF_BOUNDS, NO_RN, NO_ERROR, NULL_POINTER , WRONG_PARAMETER_ORDER
 };
 namespace rnum {
 class RationalNumberArray {

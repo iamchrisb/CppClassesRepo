@@ -145,16 +145,22 @@ RationalNumber RationalNumberArray::get(unsigned int position)  {
 void RationalNumberArray::remove(unsigned int fromPosition, unsigned int tillPosition){
     int temp = fromPosition;
     //Überschreiben der zu löschenden Werte durch lineare Verschiebung der Werte nach der tillPosition
-    for(int i= tillPosition; i< m_size;i++){
-        m_data[temp] = m_data[i];
-        temp=temp+1;
-    }
-    //zum Verkleinern der Size ausrechnen um wieviel diese kleiner wird
-    int count = tillPosition-fromPosition;
-    m_size = m_size - count;
-    //Wenn die Kapazitaet im Verhältnis zur eigentlich vergebenen Größe zu hoch ist diese verkleinern
-    if(getCapacity()>2*m_size+1){
-        resize(getCapacity()/2);
+    if(fromPosition > m_size || tillPosition > m_size ) {
+        m_error = OUT_OF_BOUNDS;
+    }else if(fromPosition > tillPosition ) {
+        m_error = WRONG_PARAMETER_ORDER;
+    }else{
+        for(int i= tillPosition; i< m_size;i++){
+            m_data[temp] = m_data[i];
+            temp=temp+1;
+        }
+        //zum Verkleinern der Size ausrechnen um wieviel diese kleiner wird
+        int count = tillPosition-fromPosition;
+        m_size = m_size - count;
+        //Wenn die Kapazitaet im Verhältnis zur eigentlich vergebenen Größe zu hoch ist diese verkleinern
+        if(getCapacity()>2*m_size+1){
+            resize(getCapacity()/2);
+        }
     }
 }
 
