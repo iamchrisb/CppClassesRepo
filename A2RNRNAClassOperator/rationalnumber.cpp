@@ -231,17 +231,17 @@ RationalNumber RationalNumber::operator *(const double d) const{
         /** THE / OPERATOR **/
 
 RationalNumber RationalNumber::operator /(const RationalNumber& e) const{
-    return *this/(e);
+    return this->div(e);
 }
 
 RationalNumber RationalNumber::operator /(const int i) const{
     RationalNumber e(i,1);
-    return *this/(e);
+    return this->div(e);
 }
 
 RationalNumber RationalNumber::operator /(const double d) const{
     RationalNumber e(d);
-    return *this/(d);
+    return this->div(e);
 }
 
         /** THE == OPERATOR **/
@@ -308,58 +308,58 @@ RationalNumber RationalNumber::operator=(const double other) {
     return rd;
 }
 
-RationalNumber RationalNumber::operator+=(const RationalNumber other) const{
+RationalNumber RationalNumber::operator+=(const RationalNumber other) {
     return *this+other;
 }
 
-RationalNumber RationalNumber::operator+=(const int other) const{
+RationalNumber RationalNumber::operator+=(const int other) {
     RationalNumber ri(other,1);
     return *this+ri;
 }
 
-RationalNumber RationalNumber::operator+=(const double other) const{
+RationalNumber RationalNumber::operator+=(const double other) {
     RationalNumber rd(other);
     return *this+rd;
 }
 
-RationalNumber RationalNumber::operator-=(const RationalNumber other) const{
+RationalNumber RationalNumber::operator-=(const RationalNumber other) {
     return *this-other;
 }
 
-RationalNumber RationalNumber::operator-=(const int other) const{
+RationalNumber RationalNumber::operator-=(const int other) {
     RationalNumber ri(other, 1);
     return *this-ri;
 }
 
-RationalNumber RationalNumber::operator-=(const double other) const{
+RationalNumber RationalNumber::operator-=(const double other) {
     RationalNumber rd(other);
     return *this-rd;
 }
 
-RationalNumber RationalNumber::operator*=(const RationalNumber other) const{
+RationalNumber RationalNumber::operator*=(const RationalNumber other) {
     return *this*other;
 }
 
-RationalNumber RationalNumber::operator*=(const int other) const{
+RationalNumber RationalNumber::operator*=(const int other) {
     RationalNumber ri(other,1);
     return *this*ri;
 }
 
-RationalNumber RationalNumber::operator*=(const double other) const {
+RationalNumber RationalNumber::operator*=(const double other) {
     RationalNumber rd(other);
     return *this*rd;
 }
 
-RationalNumber RationalNumber::operator/=(const RationalNumber other) const{
+RationalNumber RationalNumber::operator/=(const RationalNumber other) {
     return *this/other;
 }
 
-RationalNumber RationalNumber::operator/=(const int other) const{
+RationalNumber RationalNumber::operator/=(const int other) {
     RationalNumber ri(other,1);
     return *this/ri;
 }
 
-RationalNumber RationalNumber::operator/=(const double other) const{
+RationalNumber RationalNumber::operator/=(const double other) {
     RationalNumber rd(other);
     return *this/rd;
 }

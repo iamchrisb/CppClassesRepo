@@ -43,6 +43,7 @@ int main()
 
     RationalNumberArray rna1(5);
     RationalNumberArray rna2(5);
+    RationalNumberArray rna3(5);
 
     // Test Valid & NAN
     assert( n0.isValid() );
@@ -93,6 +94,14 @@ int main()
     assert(rna1.getSize() == (i3+1));
     assert(rna1.getCapacity() == (i3+1));
 
+    rna3.append(n1);
+    rna3.append(n2);
+    rna3.append(n3);
+    printf(" before remove \n");
+    rna2.remove(3, rna2.getSize());
+    printf(" after remove ErrorCode: %d \n", rna2.error());
+    rna2.printRNA();
+    rna3.printRNA();
 
     // Test Operator <= rn,rn rn,double rn,int
     assert( n1<=n2 );
@@ -121,28 +130,48 @@ int main()
 
 
 
-    /** Test Sub **/
+    // Operator -
     RationalNumber rsub1(3,4);
     RationalNumber rsub2(1,4);
+    double dsub2(0.25);
+    int nu=0;
     RationalNumber rsubresult(2,4);
 
     assert((rsub1-rsub2)==rsubresult);
-   // assert(());
+    assert((rsub1-dsub2)==rsubresult);
+    assert((rsub1-nu)== rsub1);
 
-    /** Test Mul **/
+    rsub1 -=rsub2;
+    rsub1.printRN();
+    assert(rsub1 == rsubresult);
+    rsub1 = (3,4);
+    rsub1 -= dsub2;
+    assert(rsub1 == rsubresult);
+    rsub1 = (3,4);
+    rsub1 -= nu;
+
+    rsub1.printRN();
+    // Test Operator *
     RationalNumber rmul1(2,5);
     RationalNumber rmul2(1,3);
+    double dmul2=0.4;
+    int eins=1;
     RationalNumber rmulresult(2,15);
 
-    //assert (rmul1.mul(rmul2).equal(rmulresult));
+    assert(rmul1*rmul2 == rmulresult);
+    assert(rmul2*dmul2 == rmulresult);
+    assert(rmul2*eins == rmul2);
 
-    /** Test Div **/
-
+    // Test Operator /
     RationalNumber rdiv1(1,5);
+    RationalNumber rdiv3(1,2);
+    double ddiv1 = 0.5;
     RationalNumber rdiv2(1,3);
     RationalNumber rdivresult(3,5);
 
-    //assert(rdiv1.div(rdiv2).equal(rdivresult));
+    assert((rdiv1/rdiv2) == rdivresult);
+    assert((rdiv1/ddiv1) == (rdiv1/rdiv3) );
+    assert((rdiv1/eins) == rdiv1);
 
     /** Test less **/
 

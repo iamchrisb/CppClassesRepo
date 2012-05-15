@@ -76,21 +76,21 @@ class RationalNumber {
     RationalNumber operator=( int other) ;
     RationalNumber operator=( double other) ;
 
-    RationalNumber operator+=(const RationalNumber other) const;
-    RationalNumber operator+=(const int other) const;
-    RationalNumber operator+=(const double other) const;
+    RationalNumber operator+=(const RationalNumber other);
+    RationalNumber operator+=(const int other) ;
+    RationalNumber operator+=(const double other) ;
 
-    RationalNumber operator-=(const RationalNumber other) const;
-    RationalNumber operator-=(const int other) const;
-    RationalNumber operator-=(const double other) const;
+    RationalNumber operator-=(const RationalNumber other) ;
+    RationalNumber operator-=(const int other) ;
+    RationalNumber operator-=(const double other) ;
 
-    RationalNumber operator*=(const RationalNumber other) const;
-    RationalNumber operator*=(const int other) const;
-    RationalNumber operator*=(const double other) const;
+    RationalNumber operator*=(const RationalNumber other) ;
+    RationalNumber operator*=(const int other) ;
+    RationalNumber operator*=(const double other) ;
 
-    RationalNumber operator/=(const RationalNumber other) const;
-    RationalNumber operator/=(const int other) const;
-    RationalNumber operator/=(const double other) const;
+    RationalNumber operator/=(const RationalNumber other) ;
+    RationalNumber operator/=(const int other) ;
+    RationalNumber operator/=(const double other) ;
 
     void printRN();
 
