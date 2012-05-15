@@ -72,6 +72,7 @@ int const RationalNumberArray::getCapacity() const{
   **/
 void RationalNumberArray::append( RationalNumber &rn){
     //Nicht wenn rn 0 oder NAN ist
+    if(rn == 0) m_error = NULL_POINTER;
     if(rn.isNaN()){
         //Fehler setzen
         m_error = NO_RN;
@@ -85,10 +86,7 @@ void RationalNumberArray::append( RationalNumber &rn){
             resize(2*m_capacity+1);
         }
         //ans Ende anfuegen
-        printf("\n debug : size: %d \n" , m_size);
-        //rn.printRN();
         m_data[m_size] = rn;
-        //printf("TESTINT MDATA: %d / %d" , m_data[0].zaehler() , m_data[0].nenner());
         m_size++;
     }
 }
@@ -100,6 +98,7 @@ void RationalNumberArray::append( RationalNumber &rn){
 void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
     //Nicht wenn rn 0 oder NAN ist
     //abfrage mit null angucken
+    if(rn == 0 ) m_error = NULL_POINTER;
     if(rn.isNaN()){
         //Fehler setzen
         m_error= NO_RN;
@@ -127,14 +126,13 @@ void RationalNumberArray::set(RationalNumber& rn, unsigned int position){
   * Gibt den Pointer auf die RationalNumber an Position zurueck
   **/
 //Frank fragen referenz und rückgabe wenn fehler
-RationalNumber RationalNumberArray::get(unsigned int position) {
+RationalNumber RationalNumberArray::get(unsigned int position)  {
     //Wenn position außerhalb der Kapazitaet Fehler setzen und 0 zurueckgeben
     if(position>m_size){
-        m_error= OUT_OF_BOUNDS;
+        m_error = OUT_OF_BOUNDS;
         if(rnaCallbackFunction!=0){
             rnaCallbackFunction(this);
         }
-        printf("falsch hier");
         return RationalNumber(0,0);
     }
     return m_data[position];
@@ -192,14 +190,13 @@ RationalNumberArray& RationalNumberArray::operator =( const RationalNumberArray&
 }
 
 /** THE [] OPERATOR **/
-const RationalNumber& RationalNumberArray::operator[](int i) const {
+RationalNumber& RationalNumberArray::operator[](int i) {
     return m_data[i];
 }
 
 void RationalNumberArray::printRNA(){
     printf("\n **-- printing RNA --**\n");
     for(int i = 0; i < m_size ; i++){
-        //printf("printRNA printRNA");
          m_data[i].printRN();
     }
 }

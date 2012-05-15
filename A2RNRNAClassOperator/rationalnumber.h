@@ -14,6 +14,7 @@ class RationalNumber {
 
     RationalNumber checkNeg() const;
     RationalNumber fromDouble(const double) const;
+    double toDouble(RationalNumber) const;
 
     RationalNumber add(const RationalNumber &n) const;
     bool lessThan(const RationalNumber &e) const;

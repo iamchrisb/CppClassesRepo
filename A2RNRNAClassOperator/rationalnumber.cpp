@@ -423,6 +423,11 @@ RationalNumber RationalNumber::checkNeg() const{
     return rn;
 }
 
+double RationalNumber::toDouble(RationalNumber rn) const {
+    double d = rn.zaehler() / rn.nenner();
+    return d;
+}
+
         /** OUT OF RATIONALNUMBERCLASS **/
 
 /**

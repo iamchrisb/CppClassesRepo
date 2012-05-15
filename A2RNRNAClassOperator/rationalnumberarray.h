@@ -35,13 +35,16 @@ public:
     int const getSize() const;
     void append(RationalNumber &rn);
     void set(RationalNumber& rn,unsigned int position);
-    RationalNumber get(unsigned int position) ;
+    RationalNumber get(unsigned int position);
     void remove(unsigned int fromPosition, unsigned int tillPosition);
     errorTypes& error();
     void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
 
     RationalNumberArray& operator=(const RationalNumberArray& rna);
-    const RationalNumber& operator[](int i) const ;
+    RationalNumber& operator[](int i) ;
+
+    int er(){ return m_error; }
+    const int er() const { return m_error; }
 
     void printRNA();
 /*
