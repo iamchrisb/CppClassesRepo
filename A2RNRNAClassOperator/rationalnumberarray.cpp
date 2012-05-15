@@ -14,7 +14,6 @@ RationalNumberArray::RationalNumberArray(int capacity=5)
       m_capacity(capacity),
       m_error(NO_ERROR),
       rnaCallbackFunction(0)
-
 {}
 
 /**
@@ -44,8 +43,7 @@ void RationalNumberArray::resize(const unsigned int i){
     RationalNumber * rn_temp = m_data;
     m_data = new RationalNumber[i];
     m_capacity = i;
-    if(m_size > m_capacity ){
-        m_error = OUT_OF_MEMORY;
+    if(m_capacity < m_size ){
         m_size = m_capacity;
     }
     for (unsigned int var = 0; var < m_size; ++var) {
@@ -73,7 +71,7 @@ int const RationalNumberArray::getCapacity() const{
 /**
   *Fuegt ein Element an rna an
   **/
-void RationalNumberArray::append(const RationalNumber &rn){
+void RationalNumberArray::append( RationalNumber &rn){
     //Nicht wenn rn 0 oder NAN ist
     if(rn.isNaN()){
         //Fehler setzen
@@ -88,7 +86,11 @@ void RationalNumberArray::append(const RationalNumber &rn){
             resize(2*m_capacity+1);
         }
         //ans Ende anfuegen
-        m_data[m_size++] = rn;
+        printf("\n debug : size: %d \n" , m_size);
+        rn.printRN();
+        m_data[m_size] = rn;
+        printf("TESTINT MDATA: %d / %d" , m_data[0].zaehler() , m_data[0].nenner());
+        m_size++;
     }
 }
 
@@ -133,6 +135,7 @@ RationalNumber RationalNumberArray::get(unsigned int position) {
         if(rnaCallbackFunction!=0){
             rnaCallbackFunction(this);
         }
+        printf("falsch hier");
         return RationalNumber(0,0);
     }
     return m_data[position];
@@ -195,9 +198,10 @@ const RationalNumber& RationalNumberArray::operator[](int i) const {
 }
 
 void RationalNumberArray::printRNA(){
-    printf("**-- printing RNA --**\n");
+    printf("\n **-- printing RNA --**\n");
     for(unsigned int i = 0; i < m_size ; i++){
-        get(i).printRN();
+        //printf("printRNA printRNA");
+         m_data[i].printRN();
     }
 }
 

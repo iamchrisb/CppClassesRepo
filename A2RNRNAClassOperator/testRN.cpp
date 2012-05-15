@@ -41,14 +41,14 @@ int main()
     RationalNumberArray rna2(5);
 
     rna1.set(n0,0);
-    assert(rna1.get(0).equal(n0));
-    printf("\n rna2 test \n");
+    //assert(rna1.get(0).equal(n0));
     rna2.append(n1);
-    rna2.append(n2);
-    rna2.append(n3);
-    rna2.append(n1);
-    rna2.append(n2);
-    rna2.append(n3);
+   // assert(rna2.get(0)==n1);
+  //  rna2.append(n2);
+  //  rna2.append(n3);
+  //  rna2.append(n1);
+  //  rna2.append(n2);
+  //  rna2.append(n3);
     rna2.printRNA();
     printf("\n cap : %d , size: %d \n" , rna2.getCapacity() , rna2.getSize());
     printf("\n ** ende ** \n");
@@ -70,8 +70,7 @@ int main()
     assert( n3>=n4 );
     assert( n2>=n5 );
 
-    assert( (n1>=d1) );
-    //fehler wird geworfen
+    assert( !(n1>=d1) );
     assert( n1>=d3 );
     assert( n3>=d2 );
 

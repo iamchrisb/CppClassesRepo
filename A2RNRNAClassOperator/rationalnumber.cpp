@@ -73,20 +73,20 @@ bool RationalNumber::lessThan(const RationalNumber &e) const{
     checkNeg();
     e.checkNeg();
     //Ueberpruefung der Rationalnumbers e und n
-    cout << "1" << endl;
+    //cout << "1" << endl;
     if(!isValid() || !e.isValid()){
-        cout << "2" << endl;
+        //cout << "2" << endl;
         //cout << "false, da mind. einer der Brueche nicht dem Schemata eines Bruches entspricht" << endl;
         return false;
     }
     if(m_nenner == e.nenner()){
-        cout << "3" << endl;
+       // cout << "3" << endl;
         return m_zaehler < e.zaehler();
     }
-    cout << "4" << endl;
+    //cout << "4" << endl;
     int hN= kgV(m_nenner, e.nenner());
-    cout << "m_zahler: " << m_zaehler << " hN:" << hN << "m_nenner" << m_nenner << "e.zaehler():" << e.zaehler()
-         << "e.nenner(): " << e.nenner() << endl;
+    //cout << "m_zahler: " << m_zaehler << " hN:" << hN << "m_nenner" << m_nenner << "e.zaehler():" << e.zaehler()
+    //     << "e.nenner(): " << e.nenner() << endl;
     return m_zaehler*(hN/m_nenner) < e.zaehler()*(hN/e.nenner());
 }
 
@@ -298,16 +298,12 @@ bool RationalNumber::operator<(const double other) const{
     return lessThan(rd);
 }
 
-RationalNumber RationalNumber::operator=(const RationalNumber& other) const{
-    return other;
-}
-
-RationalNumber RationalNumber::operator=(const int other) const{
+RationalNumber RationalNumber::operator=(const int other) {
     RationalNumber ri(other,1);
     return ri;
 }
 
-RationalNumber RationalNumber::operator=(const double other) const{
+RationalNumber RationalNumber::operator=(const double other) {
     RationalNumber rd(other);
     return rd;
 }

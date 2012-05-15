@@ -33,7 +33,7 @@ public:
     void resize(const unsigned int i);
     int const getCapacity() const;
     int const getSize() const;
-    void append(const RationalNumber& rn);
+    void append(RationalNumber &rn);
     void set(RationalNumber& rn,unsigned int position);
     RationalNumber get(unsigned int position) ;
     void remove(unsigned int fromPosition, unsigned int tillPosition);

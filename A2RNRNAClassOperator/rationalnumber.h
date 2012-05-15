@@ -25,7 +25,7 @@ class RationalNumber {
 
     RationalNumber(int i);
     RationalNumber(double d);
-    RationalNumber(int zaehler=0, int nenner=1): m_zaehler(zaehler), m_nenner(nenner){}
+    RationalNumber(int zaehler=5, int nenner=6): m_zaehler(zaehler), m_nenner(nenner){}
     ~RationalNumber(){}
 
     bool isValid() const;
@@ -72,9 +72,8 @@ class RationalNumber {
     bool operator<(const int other) const;
     bool operator<(const double other) const;
 
-    RationalNumber operator=(const RationalNumber& other) const;
-    RationalNumber operator=(const int other) const;
-    RationalNumber operator=(const double other) const;
+    RationalNumber operator=( int other) ;
+    RationalNumber operator=( double other) ;
 
     RationalNumber operator+=(const RationalNumber other) const;
     RationalNumber operator+=(const int other) const;
