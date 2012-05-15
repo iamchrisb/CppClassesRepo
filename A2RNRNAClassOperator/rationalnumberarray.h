@@ -5,7 +5,7 @@
 
 //Enum fuer die Fehler
 enum errorTypes{
-    OutOfMemory, NotARNA, OutOfBounds, NoRN, NoError
+    OUT_OF_MEMORY, NOT_A_RNA, OUT_OF_BOUNDS, NO_RN, NO_ERROR, NULL_POINTER
 };
 namespace rnum {
 class RationalNumberArray {
@@ -30,22 +30,21 @@ public:
     //Deconstructor
     ~RationalNumberArray();
 
-    void resize(unsigned int i);
-    int const getCapacity();
-    int const getSize();
-    void append(RationalNumber& rn);
+    void resize(const unsigned int i);
+    int const getCapacity() const;
+    int const getSize() const;
+    void append(const RationalNumber& rn);
     void set(RationalNumber& rn,unsigned int position);
-    RationalNumber get(unsigned int position);
+    RationalNumber get(unsigned int position) ;
     void remove(unsigned int fromPosition, unsigned int tillPosition);
     errorTypes& error();
     void rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*));
 
     RationalNumberArray& operator=(const RationalNumberArray& rna);
     const RationalNumber& operator[](int i) const ;
+
+    void printRNA();
 /*
-
-
-
 
 void rnaErrorCallback(RationalNumberArray* rna, void (*rnaCallbackFunction)(RationalNumberArray*));
 */

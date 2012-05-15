@@ -42,15 +42,25 @@ int main()
 
     rna1.set(n0,0);
     assert(rna1.get(0).equal(n0));
+    printf("\n rna2 test \n");
+    rna2.append(n1);
+    rna2.append(n2);
+    rna2.append(n3);
+    rna2.append(n1);
+    rna2.append(n2);
+    rna2.append(n3);
+    rna2.printRNA();
+    printf("\n cap : %d , size: %d \n" , rna2.getCapacity() , rna2.getSize());
+    printf("\n ** ende ** \n");
 
     //Less Than tests
     assert( n1<=n2 );
     assert( n3<=n4 );
     assert( !(n2<=n5) );
 
-    assert( n1<=d1 );
-    assert( n1<=d3 );
-    assert( !(n3<=d2) );
+    //assert( n1<=d1 );
+    //assert( n1<=d3 );
+    //assert( !(n3<=d2) );
 
     assert( n1<=i1 );
     assert( !(n3<=i2) );
@@ -60,7 +70,7 @@ int main()
     assert( n3>=n4 );
     assert( n2>=n5 );
 
-    assert( !(n1>=d1) );
+    assert( (n1>=d1) );
     //fehler wird geworfen
     assert( n1>=d3 );
     assert( n3>=d2 );

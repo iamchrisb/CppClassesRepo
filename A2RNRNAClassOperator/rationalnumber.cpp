@@ -170,7 +170,7 @@ RationalNumber RationalNumber::div(const RationalNumber &e) const{
 }
 
 void RationalNumber::printRN(){
-    printf("%d / %d" , m_zaehler , m_nenner);
+    printf("%d / %d | " , m_zaehler , m_nenner);
 }
 
 /** OPERATOR OVERLOADING - OPERATOR OVERLOADING **/
@@ -350,8 +350,8 @@ RationalNumber RationalNumber::operator*=(const int other) const{
 }
 
 RationalNumber RationalNumber::operator*=(const double other) const {
-    //RationalNumber rd(double);
-    //return this->mul(rd);
+    RationalNumber rd(other);
+    return *this*rd;
 }
 
 RationalNumber RationalNumber::operator/=(const RationalNumber other) const{
@@ -395,7 +395,7 @@ RationalNumber RationalNumber::fromDouble(const double other) const{
     int dPow = getDigits(other);
     int nD = pow(10 , dPow);
     RationalNumber rn(other*nD , nD);
-    cout << "rn: " << rn.zaehler() << "/" << rn.nenner() << endl;
+    //cout << "rn: " << rn.zaehler() << "/" << rn.nenner() << endl;
     return rn;
 }
 
