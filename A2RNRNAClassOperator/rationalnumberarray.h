@@ -26,7 +26,7 @@ public:
     // Default Constructor
     RationalNumberArray(int capacity);
     //Copy Constructor
-    RationalNumberArray(const RationalNumberArray& r );
+    RationalNumberArray( RationalNumberArray& r );
     //Deconstructor
     ~RationalNumberArray();
 
@@ -38,9 +38,9 @@ public:
     RationalNumber get(unsigned int position);
     void remove(unsigned int fromPosition, unsigned int tillPosition);
     errorTypes& error();
-    void rnaErrorCallback(void(&rnaCallbackFunction)(RationalNumberArray *));
+    void rnaErrorCallback(void(*rnaCallbackFunction)(RationalNumberArray *));
 
-    RationalNumberArray& operator=(const RationalNumberArray& rna);
+    RationalNumberArray& operator=( RationalNumberArray& rna);
     RationalNumber& operator[](int i) ;
 
     void printRNA();

@@ -7,6 +7,10 @@
 
 using namespace rnum;
 
+void testCallback(RationalNumberArray *arn){
+    printf("hallo hier spricht die callback");
+}
+
 
 int main()
 {
@@ -276,8 +280,8 @@ int main()
     rna2.set(nn,3);
     assert(rna2.error()==3);
 
-
-
+    rna2.rnaErrorCallback(&testCallback);
+    rna2.get(100);
     //assert(rless2.lessThan(rless1));
 
 /*

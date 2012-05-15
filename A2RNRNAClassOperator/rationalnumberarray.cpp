@@ -19,13 +19,17 @@ RationalNumberArray::RationalNumberArray(int capacity=5)
 /**
   *Copy Konstruktor
   **/
-RationalNumberArray::RationalNumberArray(const RationalNumberArray& r ) {
+RationalNumberArray::RationalNumberArray( RationalNumberArray& r ) {
+    m_size = r.getSize();
+    m_error = r.error();
+    m_capacity = r.getCapacity();
+    //this->rnaErrorCallback() = r.rnaErrorCallback();
+
+    RationalNumber * tmpdata = new RationalNumber[r.getCapacity()];
+    m_data = tmpdata;
     for (int i = 0; i < r.m_size; ++i) {
         m_data[i] = r.m_data[i];
     }
-    m_size = r.m_size;
-    m_capacity = r.m_capacity;
-    m_error = r.m_error;
 }
 
 /**
@@ -177,9 +181,6 @@ void RationalNumberArray::remove(unsigned int fromPosition, unsigned int tillPos
 errorTypes& RationalNumberArray::error(){
     if( this == 0 ) {
         m_error = NULL_POINTER;
-        if(rnaCallbackFunction!=0){
-            rnaCallbackFunction(this);
-        }
     }
     return m_error;
 }
@@ -190,17 +191,21 @@ errorTypes& RationalNumberArray::error(){
   *Diese Methode wäre die auf der der Callback stattfindet.
   **/
 
-void RationalNumberArray::rnaErrorCallback(void (&rnaCallbackFunction)(RationalNumberArray*)){
+void RationalNumberArray::rnaErrorCallback(void (*rnaCallbackFunction)(RationalNumberArray*)){
     this->rnaCallbackFunction = rnaCallbackFunction;
 }
  /** THE = OPERATOR **/
-RationalNumberArray& RationalNumberArray::operator =( const RationalNumberArray& rna) {
-    for (int i = 0; i < rna.m_size; ++i) {
-        m_data[i] = rna.m_data[i];
+RationalNumberArray& RationalNumberArray::operator =( RationalNumberArray& r) {
+    m_size = r.getSize();
+    m_error = r.error();
+    m_capacity = r.getCapacity();
+    //this->rnaErrorCallback() = r.rnaErrorCallback();
+
+    RationalNumber * tmpdata = new RationalNumber[r.getCapacity()];
+    m_data = tmpdata;
+    for (int i = 0; i < r.m_size; ++i) {
+        m_data[i] = r.m_data[i];
     }
-    m_size = rna.m_size;
-    m_capacity = rna.m_capacity;
-    m_error = rna.m_error;
     return *this;
 }
 
