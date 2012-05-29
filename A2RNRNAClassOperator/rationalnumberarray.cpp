@@ -23,7 +23,7 @@ RationalNumberArray::RationalNumberArray( RationalNumberArray& r ) {
     m_size = r.getSize();
     m_error = r.error();
     m_capacity = r.getCapacity();
-    //this->rnaErrorCallback() = r.rnaErrorCallback();
+    //this->rnaErrorCallback = r.rnaErrorCallback;
 
     RationalNumber * tmpdata = new RationalNumber[r.getCapacity()];
     m_data = tmpdata;
