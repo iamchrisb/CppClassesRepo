@@ -12,13 +12,11 @@ private:
 
 public:
 
-
-
     Pair(T1 t1=T1(), T2 t2=T2())
-        :
-            m_first(t1),
-            m_second(t2)
-    {}
+        //:
+            //m_first(t1),
+            //m_second(t2)
+    { m_first = t1 ; m_second = t2 ;}
 
     T1& first() { return m_first; }
     T2& second(){ return m_second; }
@@ -32,7 +30,5 @@ std::ostream& operator<< (std::ostream& out, const Pair<T1,T2> &pair){
     out << "Pair<" << pair.first() << "," << pair.second() << ">";
     return out;
 }
-
-//#include "pair.cpp"
 
 #endif // PAIR_H
