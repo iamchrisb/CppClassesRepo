@@ -11,9 +11,11 @@ int main()
     int i = 5;
     string s = "Hallo";
 
+    int i1 = 2;
+
     Pair<int,string> p;
     cout << p << endl;
     Pair<int,string> p2 (i,s);
-    cout << p2 << endl;
+
 }
 
