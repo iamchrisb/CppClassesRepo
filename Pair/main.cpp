@@ -14,6 +14,10 @@ int main()
     string s = "Hallo";
 
     Pair<int,string> p;
+    cout << p << endl;
+    Pair<int,string> p2 (i,s);
+
+    //cout << p << endl;
 
    // cout << p.first();
     //cout << p;

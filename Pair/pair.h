@@ -1,25 +1,38 @@
 #ifndef PAIR_H
 #define PAIR_H
 
+#include <iostream>
+
 template<typename T1, typename T2>
 class Pair {
 
 private:
-    T1 first;
-    T2 second;
+    T1 m_first;
+    T2 m_second;
 
 public:
-    Pair();
-    Pair(T1 t1, T2 t2);
 
-    T1& first();
-    //const T1& first() const { return first; }
-    //T1& first() { return first; }
 
-    //const T2& second() const { return second; }
-    //T2& second() { return second; }
+
+    Pair(T1 t1=T1(), T2 t2=T2())
+        :
+            m_first(t1),
+            m_second(t2)
+    {}
+
+    T1& first() { return m_first; }
+    T2& second(){ return m_second; }
+
+    const T1& first() const { return m_first; }
+    const T2& second() const { return m_second; }
 };
 
-#include "pair.cpp"
+template<typename T1, typename T2>
+std::ostream& operator<< (std::ostream& out, const Pair<T1,T2> &pair){
+    out << "Pair<" << pair.first() << "," << pair.second() << ">";
+    return out;
+}
+
+//#include "pair.cpp"
 
 #endif // PAIR_H
