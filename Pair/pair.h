@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+namespace mystl{
 template<typename T1, typename T2>
 class Pair {
 
@@ -19,7 +20,7 @@ public:
     {}
 
     //Copy Constructor
-    Pair(Pair<T1,T2>& p){
+    Pair(const Pair<T1,T2>& p){
         m_first = p.first();
         m_second = p.second();
     }
@@ -31,16 +32,20 @@ public:
     const T2& second() const { return m_second; }
 
     Pair<T1,T2>& operator =(Pair<T1,T2>& p){
+//        return Pair(p);
         m_first = p.first();
         m_second = p.second();
         return *this;
     }
+
 };
 
 template<typename T1, typename T2>
 std::ostream& operator<< (std::ostream& out, const Pair<T1,T2> &pair){
     out << "Pair<" << pair.first() << "," << pair.second() << ">";
     return out;
+}
+
 }
 
 #endif // PAIR_H
