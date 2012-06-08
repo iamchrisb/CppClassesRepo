@@ -4,6 +4,7 @@
 namespace mystl {
 
     template <typename T, template<typename> class Order> class Tree;
+    template <typename T, template<typename> class Order> class TreeIterator;
 
     template<typename T , template<typename> class Order = Less >
     class TreeNode
@@ -16,7 +17,8 @@ namespace mystl {
         TreeNode<T , Order>* m_up;
 
     private:
-        T* m_value;
+        Order<T> m_order;
+        T m_value;
 
         TreeNode<T , Order>& findFirstRek(TreeNode<T , Order>& t){
             if(t->m_up == 0){

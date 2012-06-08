@@ -1,13 +1,19 @@
 #ifndef TREEITERATOR_H
 #define TREEITERATOR_H
 
+#include "TreeNode.h"
+
 namespace mystl {
 
     template<typename T , template<typename> class Order = Less >
     class TreeIterator
     {
+        typedef TreeNode<T,Order> node;
         T* m_tree;
-        T* m_node;
+        node m_node;
+
+    public:
+        TreeIterator(TreeNode<T,Order> treeNode);
     };
 }
 

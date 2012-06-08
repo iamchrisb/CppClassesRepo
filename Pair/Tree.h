@@ -2,6 +2,7 @@
 #define TREE_H
 
 #include "TreeNode.h"
+#include "TreeIterator.h"
 #include "stdio.h"
 
 namespace mystl {
@@ -9,6 +10,7 @@ namespace mystl {
     class Tree
     {
         typedef TreeNode<T,Order> node;
+        typedef TreeIterator<T, Order> iterator;
     private:
         node* m_root;
 
@@ -39,18 +41,25 @@ namespace mystl {
 
     public:
 
+        iterator getIt(){
+
+        }
+
         Tree():
             m_root(0)
             {}
 
         void insert(const T& value){
+
             if(m_root == 0){
                 printf("m_root null\n");
-                TreeNode<T , Order>* tmp = new TreeNode<T ,Order>(&value);
-//                m_root = tmp;
+                node* tmp = new node(value);
+                m_root = tmp;
+                node n = *tmp;
+//                iterator it = new iterator(n);
             }else{
                 printf("m_root not null\n");
-//                rekInsert(this->m_root,value);
+//                rekInsert(m_root,value);
             }
            // return 0;
         }
