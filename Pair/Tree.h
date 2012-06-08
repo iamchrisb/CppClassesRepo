@@ -14,31 +14,6 @@ namespace mystl {
     private:
         node* m_root;
 
-        void rekInsert(TreeNode<T, Order> tn, const T& value){
-            if(value < *(tn.m_value)){
-                if(tn.m_left != 0){
-                    printf("rek_left");
-                    rekInsert(tn.m_left , value);
-                }else{
-                    TreeNode<T , Order> tmp;
-                    tmp.m_value= &value;
-                    tmp.m_up = tn.m_up;
-                    tn = tmp;
-                }
-            }else if(value > *(tn.m_value)){
-                if(tn.m_right != 0){
-                    printf("rek_right");
-                    rekInsert(tn.m_right , value);
-                }else{
-                    TreeNode<T , Order> tmp;
-                    tmp.m_value = &value;
-                    tmp.m_up = tn.m_up;
-                    tn = tmp;
-                }
-            }
-            //return 0;
-        }
-
     public:
 
         iterator getIt(){
@@ -59,7 +34,7 @@ namespace mystl {
 //                iterator it = new iterator(n);
             }else{
                 printf("m_root not null\n");
-//                rekInsert(m_root,value);
+                m_root->find(value);
             }
            // return 0;
         }

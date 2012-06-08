@@ -9,6 +9,8 @@ namespace mystl {
     template<typename T , template<typename> class Order = Less >
     class TreeNode
     {
+       typedef TreeNode<T,Order> node;
+
        friend class Tree<T , Order>;
 
     protected:
@@ -28,12 +30,29 @@ namespace mystl {
             }
         }
 
-        TreeNode<T , Order>& findByValue(TreeNode<T , Order> tn, T value){
-            if(tn.m_value < value){
-                return findByValue(m_left , value);
-            }else if(tn.m_value > value ){
-                return findByValue(m_right , value);
+        TreeNode<T , Order>* findByValue(TreeNode<T , Order>* tn, T value){
+            if(tn->m_value > value){
+                if(tn->m_left != 0){
+                    printf("rek left \n");
+                    return findByValue(m_left , value);
+                }else{
+                    printf("not rek left \n");
+                    node* tmp = new node(value);
+                    tn->m_left = tmp;
+                    return tmp;
+                }
+            }else if(tn->m_value < value ){
+                if(tn->m_right != 0){
+                    printf("rek right \n");
+                    return findByValue(m_right , value);
+                }else{
+                    printf("not rek right \n");
+                    node * tmp = new node(value);
+                    tn->m_right = tmp;
+                    return tmp;
+                }
             }else{
+                printf("the same\n");
                 return tn;
             }
         }
@@ -41,8 +60,7 @@ namespace mystl {
     public:
         T* value(){ return m_value; }
         void value(const T& value){ m_value = value;}
-        TreeNode<T , Order>& find(const T&value){
-            //TreeNode<int> ...
+        TreeNode<T , Order>* find(const T&value){
             return findByValue(this , value);
         }
 
@@ -56,7 +74,7 @@ namespace mystl {
 
         TreeNode(const T &value = 0):m_left(0), m_right(0),m_up(0), m_value(value)
         {
-            printf("TreeNode Konstruktor");
+//            printf("TreeNode Konstruktor");
         }
 
     };

@@ -98,17 +98,24 @@ int main()
     // construct empty tree
     Tree<int> t;
 
-    t.insert(5);
-    t.insert(10);
-    cout << "empty tree: ";
+//    t.insert(5);
+//    t.insert(10);
+    cout << "empty tree: \n";
     //assert(printAndCount(t) == 0);
-#if 0 // move this line down while your implementation proceeds...
+//#if 0 // move this line down while your implementation proceeds...
     // insert elements in a certain order
+    t.insert(5);
     t.insert(4);
     t.insert(3);
-    t.insert(2);
-    t.insert(1);
     t.insert(5);
+//    t.insert(1);
+    t.insert(6);
+    t.insert(2);
+//    t.insert(20);
+//    t.insert(2);
+//    t.insert(30);
+//    t.insert(10);
+    #if 0 // move this line down while your implementation proceeds...
     cout << "tree 4-3-2-1-5: ";
     assert(printAndCount(t) == 5);
 
