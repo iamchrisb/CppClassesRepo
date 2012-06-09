@@ -30,13 +30,13 @@ namespace mystl {
             }
         }
 
-        TreeNode<T , Order>* findByValue(TreeNode<T , Order>* tn, T value){
-            if(tn->m_value > value){
+        TreeNode<T , Order>* findByValue(TreeNode<T , Order>* tn,const T value){
+            if(value < tn->m_value ){
                 if(tn->m_left != 0){
-                    printf("rek left \n");
-                    return findByValue(m_left , value);
+                    printf("REK LEFT | value: %d | tn->m_value: %d \n" , value , tn->m_value);
+                    return findByValue(tn->m_left , value);
                 }else{
-                    printf("not rek left \n");
+                    printf("NOT REK LEFT | value: %d | tn->m_value %d \n" , value , tn->m_value);
                     node* tmp = new node(value);
                     tn->m_left = tmp;
                     return tmp;
@@ -44,7 +44,7 @@ namespace mystl {
             }else if(tn->m_value < value ){
                 if(tn->m_right != 0){
                     printf("rek right \n");
-                    return findByValue(m_right , value);
+                    return findByValue(tn->m_right , value);
                 }else{
                     printf("not rek right \n");
                     node * tmp = new node(value);
