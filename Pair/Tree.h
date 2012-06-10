@@ -11,6 +11,7 @@ namespace mystl {
     {
         typedef TreeNode<T,Order> node;
         typedef TreeIterator<T, Order> iterator;
+
     private:
         Order<T> m_order;
         node* m_root;
@@ -18,7 +19,7 @@ namespace mystl {
     public:
 
         iterator getIt(){
-
+            iterator it = new iterator(this->m_root);
         }
 
         Tree():
@@ -36,7 +37,7 @@ namespace mystl {
             node* tmp = new node(value);
             m_root = tmp;
             node* n = tmp;
-            iterator it = new iterator(n);
+//            iterator* it = new iterator(n);
 //            it.m_node;
 //            return new iterator(n);
         }else{

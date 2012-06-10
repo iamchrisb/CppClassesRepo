@@ -2,6 +2,7 @@
 #define TREEITERATOR_H
 
 #include "TreeNode.h"
+#include "TreeIterator.h"
 
 namespace mystl {
 

@@ -12,6 +12,7 @@ namespace mystl {
        typedef TreeNode<T,Order> node;
 
        friend class Tree<T , Order>;
+       friend class TreeIterator<T, Order>;
 
     protected:
         TreeNode<T, Order>* m_left;
