@@ -22,15 +22,31 @@ namespace mystl {
         Order<T> m_order;
         T m_value;
 
-        TreeNode<T , Order>& findFirstRek(TreeNode<T , Order>& t){
+        node* findRoot(node* t){
             if(t->m_up == 0){
                 return t;
             }else{
-                return findFirstRek(t->m_up);
+                return findRoot(t->m_up);
             }
         }
 
-        TreeNode<T , Order>* findByValue(TreeNode<T , Order>* tn,const T value){
+        node* findLeft(node* t){
+            if(t->m_left == 0){
+                return t;
+            }else{
+                return findLeft(t->m_left);
+            }
+        }
+
+        node* findRight(node* t){
+            if(t->m_right == 0){
+                return t;
+            }else{
+                return findRight(t->m_right);
+            }
+        }
+
+        node* findByValue(node* tn,const T value){
             if(value < tn->m_value ){
                 if(tn->m_left != 0){
                     printf("REK LEFT | value: %d | tn->m_value: %d \n" , value , tn->m_value);
@@ -65,18 +81,17 @@ namespace mystl {
         }
 
         TreeNode<T , Order>& findFirst(){
-            findFirstRek(this);
+            node* tmp = findRoot(this);
+            return findLeft(tmp);
         }
 
         TreeNode<T , Order>& findLast(){
-
+            node* tmp = findRoot(this);
+            return findRight(tmp);
         }
 
         TreeNode(const T &value = 0):m_left(0), m_right(0),m_up(0), m_value(value)
-        {
-//            printf("TreeNode Konstruktor");
-        }
-
+        {}
     };
 }
 

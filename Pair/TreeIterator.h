@@ -10,10 +10,10 @@ namespace mystl {
     {
         typedef TreeNode<T,Order> node;
         T* m_tree;
-        node m_node;
+        node* m_node;
 
     public:
-        TreeIterator(TreeNode<T,Order> treeNode);
+        TreeIterator(node* treeNode);
     };
 }
 
