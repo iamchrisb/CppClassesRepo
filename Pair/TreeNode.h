@@ -83,7 +83,7 @@ namespace mystl {
 
         TreeNode<T , Order>& findFirst(){
             node* tmp = findRoot(this);
-            return findLeft(tmp);
+            return *(findLeft(tmp));
         }
 
         TreeNode<T , Order>& findLast(){

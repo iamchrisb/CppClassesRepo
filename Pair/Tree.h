@@ -20,13 +20,13 @@ namespace mystl {
             if(tn == m_root && m_root->m_left == 0 && m_root->m_right == 0){
                 m_root=0;
             }else{
-                node* tmp = tn->findFirst();
+                node tmp = tn->findFirst();
                 if(tmp.m_right != 0){
                     deleteNode(tmp.m_right);
                 }else{
                     node* tmpup = tmp.m_up;
-                    printf("deleting: %d", tmp->value());
-                    tmp == 0;
+                    printf("deleting: %d", tmp.m_value);
+                    tmp = 0;
 
                     deleteNode(tmpup);
                 }
@@ -52,18 +52,19 @@ namespace mystl {
                 node* tmp = new node(value);
                 m_root = tmp;
                 node* n = tmp;
-                it(n);
+                iterator it(tmp);
                 return it;
             }else{
                 printf("m_root not null\n");
                 node* tmp = m_root->find(value);
-                return new iterator(tmp);
+                iterator it(tmp);
+                return it;
             }
         }
 
         void clear(){
             if(m_root!=0){
-                deleteNode(m_root->findFirst());
+                deleteNode(&(m_root->findFirst()));
             }
 
         }

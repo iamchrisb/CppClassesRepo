@@ -15,7 +15,7 @@ namespace mystl {
         node* m_node;
 
     public:
-//        TreeIterator(node* treeNode);
+        TreeIterator(node* treeNode):m_node(treeNode){}
         TreeIterator(){}
     };
 }
