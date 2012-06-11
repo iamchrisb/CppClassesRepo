@@ -34,6 +34,42 @@ namespace mystl {
 
         }
 
+        node* rekInsert(node* tn, const T& value){
+            if(m_order(value , tn->m_value )){
+                if(tn->m_left != 0){
+                    printf("REK LEFT | value: %d | tn->m_value: %d \n" , value , tn->m_value);
+                    //iterator it();
+                    return rekInsert(tn->m_left , value);
+                }else{
+
+//                    printf("NOT REK LEFT | value: %d | tn->m_value %d \n" , value , tn->m_value);
+                    node* tmp = new node(value);
+                    tn->m_left = tmp;
+                    //iterator it();
+                    return tn->m_left;
+                }
+            }else if(m_order(tn->m_value , value )){
+                if(tn->m_right != 0){
+                    printf("rek right \n");
+                    //iterator it();
+                    return rekInsert(tn->m_right , value);
+
+                }else{
+
+//                    printf("not rek right \n");
+                    node * tmp = new node(value);
+                    tn->m_right = tmp;
+                    //iterator it();
+                    return tn->m_right;
+                }
+            }else{
+                printf("the same\n");
+                //iterator it(tn);
+                return tn;
+            }
+
+        }
+
     public:
 
         Tree():
@@ -41,20 +77,8 @@ namespace mystl {
             {}
 
         iterator insert(const T& value){
-            iterator it;
-            if(m_root == 0){
-                printf("m_root null\n");
-                node* tmp = new node(value);
-                m_root = tmp;
-                node* n = tmp;
-                iterator it(tmp);
-                return it;
-            }else{
-                printf("m_root not null\n");
-                node* tmp = m_root->find(value);
-                iterator it(tmp);
-                return it;
-            }
+            iterator it(rekInsert(m_root, value));
+            return it;
         }
 
         void clear(){
