@@ -20,7 +20,16 @@ namespace mystl {
             if(tn == m_root && m_root->m_left == 0 && m_root->m_right == 0){
                 m_root=0;
             }else{
+                node* tmp = tn->findFirst();
+                if(tmp.m_right != 0){
+                    deleteNode(tmp.m_right);
+                }else{
+                    node* tmpup = tmp.m_up;
+                    printf("deleting: %d", tmp->value());
+                    tmp == 0;
 
+                    deleteNode(tmpup);
+                }
             }
 
         }
