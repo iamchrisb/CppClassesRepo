@@ -36,11 +36,6 @@ namespace mystl {
 
     public:
 
-        iterator getIt(){
-//            iterator it = new iterator(this->m_root);
-            return TreeIterator<T , Order>();
-        }
-
         Tree():
             m_root(0)
             {}

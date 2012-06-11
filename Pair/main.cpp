@@ -110,7 +110,7 @@ int main()
     t.insert(17);
     t.insert(22);
 
-    t.clear();
+//    t.clear();
  #if 0 // move this line down while your implementation proceeds...
 
 

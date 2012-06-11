@@ -48,25 +48,27 @@ namespace mystl {
         }
 
         node* findByValue(node* tn,const T value){
-            if(value < tn->m_value ){
+            if(Order(value , tn->m_value )){
                 if(tn->m_left != 0){
                     printf("REK LEFT | value: %d | tn->m_value: %d \n" , value , tn->m_value);
                     return findByValue(tn->m_left , value);
                 }else{
-                    printf("NOT REK LEFT | value: %d | tn->m_value %d \n" , value , tn->m_value);
-                    node* tmp = new node(value);
-                    tn->m_left = tmp;
-                    return tmp;
+                    return 0;
+//                    printf("NOT REK LEFT | value: %d | tn->m_value %d \n" , value , tn->m_value);
+//                    node* tmp = new node(value);
+//                    tn->m_left = tmp;
+//                    return tmp;
                 }
-            }else if(tn->m_value < value ){
+            }else if(Order(tn->m_value , value )){
                 if(tn->m_right != 0){
                     printf("rek right \n");
                     return findByValue(tn->m_right , value);
                 }else{
-                    printf("not rek right \n");
-                    node * tmp = new node(value);
-                    tn->m_right = tmp;
-                    return tmp;
+                    return 0;
+//                    printf("not rek right \n");
+//                    node * tmp = new node(value);
+//                    tn->m_right = tmp;
+//                    return tmp;
                 }
             }else{
                 printf("the same\n");
