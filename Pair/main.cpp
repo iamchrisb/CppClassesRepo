@@ -102,7 +102,9 @@ int main()
 //    t.insert(10);
     cout << "empty tree: \n";
     //assert(printAndCount(t) == 0);
-//#if 0 // move this line down while your implementation proceeds...
+    t.getIt();
+
+
     // insert elements in a certain order
     t.insert(6);
     t.insert(4);
@@ -119,6 +121,7 @@ int main()
     t.insert(30);
     t.insert(10);
     #if 0 // move this line down while your implementation proceeds...
+//    #if 0 // move this line down while your implementation proceeds...
     cout << "tree 4-3-2-1-5: ";
     assert(printAndCount(t) == 5);
 

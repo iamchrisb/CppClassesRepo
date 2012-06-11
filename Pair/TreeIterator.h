@@ -1,8 +1,7 @@
 #ifndef TREEITERATOR_H
 #define TREEITERATOR_H
 
-#include "TreeNode.h"
-#include "TreeIterator.h"
+//#include "TreeNode.h"
 
 namespace mystl {
 
@@ -10,11 +9,14 @@ namespace mystl {
     class TreeIterator
     {
         typedef TreeNode<T,Order> node;
-        T* m_tree;
+        typedef Tree<T,Order> tree;
+
+        tree* m_tree;
         node* m_node;
 
     public:
-        TreeIterator(node* treeNode);
+//        TreeIterator(node* treeNode);
+        TreeIterator(){}
     };
 }
 

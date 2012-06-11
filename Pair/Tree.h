@@ -19,31 +19,31 @@ namespace mystl {
     public:
 
         iterator getIt(){
-            iterator it = new iterator(this->m_root);
+//            iterator it = new iterator(this->m_root);
+            return TreeIterator<T , Order>();
         }
 
         Tree():
             m_root(0)
             {}
 
-        void insert(const T& value);
+        iterator insert(const T& value);
     };
 
     template<typename T , template<typename> class Order >
-    void Tree<T,Order>::insert(const T& value){
-//        iterator it;
+    TreeIterator<T,Order> Tree<T,Order>::insert(const T& value){
+        iterator it;
         if(m_root == 0){
             printf("m_root null\n");
             node* tmp = new node(value);
             m_root = tmp;
             node* n = tmp;
-//            iterator* it = new iterator(n);
-//            it.m_node;
-//            return new iterator(n);
+            iterator it (n);
+            return new iterator(n);
         }else{
             printf("m_root not null\n");
             node* tmp = m_root->find(value);
-//            return new iterator(tmp);
+            return new iterator(tmp);
         }
     }
 
