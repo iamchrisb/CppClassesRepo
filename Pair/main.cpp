@@ -94,7 +94,7 @@ int main()
 
     /////////////////////////////////////////
     // TEST TREE
- #if 0 // move this line down while your implementation proceeds...
+
     // construct empty tree
     Tree<int> t;
     t.insert(15);
@@ -111,9 +111,7 @@ int main()
     t.insert(22);
 
 //    t.clear();
-
-
-
+ #if 0 // move this line down while your implementation proceeds...
 
 //    t.insert(5);
 //    t.insert(10);
