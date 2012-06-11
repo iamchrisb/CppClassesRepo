@@ -16,6 +16,15 @@ namespace mystl {
         Order<T> m_order;
         node* m_root;
 
+        void deleteNode(node* tn){
+            if(tn == m_root && m_root->m_left == 0 && m_root->m_right == 0){
+                m_root=0;
+            }else{
+
+            }
+
+        }
+
     public:
 
         iterator getIt(){
@@ -27,26 +36,29 @@ namespace mystl {
             m_root(0)
             {}
 
-        iterator insert(const T& value);
-    };
-
-    template<typename T , template<typename> class Order >
-    TreeIterator<T,Order> Tree<T,Order>::insert(const T& value){
-        iterator it;
-        if(m_root == 0){
-            printf("m_root null\n");
-            node* tmp = new node(value);
-            m_root = tmp;
-            node* n = tmp;
-            iterator it (n);
-            return new iterator(n);
-        }else{
-            printf("m_root not null\n");
-            node* tmp = m_root->find(value);
-            return new iterator(tmp);
+        iterator insert(const T& value){
+            iterator it;
+            if(m_root == 0){
+                printf("m_root null\n");
+                node* tmp = new node(value);
+                m_root = tmp;
+                node* n = tmp;
+                it(n);
+                return it;
+            }else{
+                printf("m_root not null\n");
+                node* tmp = m_root->find(value);
+                return new iterator(tmp);
+            }
         }
-    }
 
+        void clear(){
+            if(m_root!=0){
+                deleteNode(m_root->findFirst());
+            }
+
+        }
+    };
 }
 
 #endif // TREE_H
