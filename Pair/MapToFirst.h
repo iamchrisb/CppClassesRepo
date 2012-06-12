@@ -1,8 +1,9 @@
 #ifndef MAPTOFIRST_H
 #define MAPTOFIRST_H
+#include "less.h"
 
 namespace mystl {
-template<typename T1, typename T2 , template<typename> class Order = Less >
+template<typename T1, typename T2 , template<typename T1> class Order = Less >
 class MapToFirst
 {
 

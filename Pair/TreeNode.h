@@ -3,10 +3,10 @@
 
 namespace mystl {
 
-    template <typename T, template<typename> class Order> class Tree;
-    template <typename T, template<typename> class Order> class TreeIterator;
+    template <typename T, typename Order> class Tree;
+    template <typename T, typename Order> class TreeIterator;
 
-    template<typename T , template<typename> class Order = Less >
+    template<typename T , typename Order = Less<T> >
     class TreeNode
     {
        typedef TreeNode<T,Order> node;
@@ -20,9 +20,9 @@ namespace mystl {
         TreeNode<T , Order>* m_up;
 
     private:
-        Order<T> m_order;
+        Order m_order;
         T m_value;
-
+    private:
         node* findRoot(node* t){
             if(t->m_up == 0){
                 return t;
@@ -73,14 +73,14 @@ namespace mystl {
             return findByValue(this , value);
         }
 
-        TreeNode<T , Order>& findFirst(){
+        TreeNode<T , Order>* findFirst(){
             node* tmp = findRoot(this);
-            return *(findLeft(tmp));
+            return findLeft(tmp);
         }
 
-        TreeNode<T , Order>& findLast(){
+        TreeNode<T , Order>* findLast(){
             node* tmp = findRoot(this);
-            return *(findRight(tmp));
+            return findRight(tmp);
         }
 
         TreeNode(const T &value = 0):m_left(0), m_right(0),m_up(0), m_value(value)

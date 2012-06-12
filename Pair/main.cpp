@@ -22,7 +22,7 @@ using namespace std;
 //#include "order.h"
 #include "Tree.h"
 //#include "TreeNode.h"
-//#include "map.h"
+#include "Map.h"
 
 // you should define your own namespace for
 // the templates/classes in this project
@@ -116,8 +116,57 @@ int main()
     printAndCount(t);
     printAndCountBackwards(t);
     t.clear();
-//    t.clear();
- #if 0 // move this line down while your implementation proceeds...
+
+    /////////////////////////////////////////
+    // TEST MAP
+
+    Pair<int,string> p42(42,"Douglas Adams");
+    Pair<int,string> p3(3,"Nummer 3");
+    Pair<int,string> p1(1,"Nummer 1");
+    Pair<int,string> p7(7,"James Bond");
+    Pair<int,string> p50(50, "Chris Bleckm");
+    string value;
+
+    Map<int,string, MapToFirst<int,string,Less> > m;
+
+    // insert pairs of (key,value)
+    m.insert(p42);
+    m.insert(p7);
+    m.insert(p1);
+    m.insert(p50);
+    cout << "map 42-7: ";
+    assert(printAndCount(m) == 4);
+
+    // test finding elements via operator()
+    cout << "find 42 in map: " << (value=m[42]) << endl;
+    assert(value == p42.second());
+    cout << "find 3 in map: " << (value=m[3]) << endl;
+    assert(value == string());
+
+    // direct write access via operator[]
+    cout << "setting m[3] and m[1]." << endl;
+//    m[1] = p1.second();
+//    m[3] = p3.second();
+    m.clear();
+
+#if 0 // move this line down while your implementation proceeds...
+    cout << "find 3 in map: " << (value=m[3]) << endl;
+    assert(value == p3.second());
+
+    cout << "resulting map: ";
+    assert(printAndCount(m) == 4);
+
+    // test first() and last(), min() and max()
+    Map<int,string>::iterator first = m.first();
+    Map<int,string>::iterator last = m.last();
+    cout << "first in map: " << *first << endl;
+    cout << "last in map: " << *last << endl;
+    assert(first->first() == 1);
+    assert(last->first() == 42);
+    assert(m.min() == first->first());
+    assert(m.max() == last->first());
+
+// #if 0 // move this line down while your implementation proceeds...
 
 //    t.insert(5);
 //    t.insert(10);

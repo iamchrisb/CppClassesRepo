@@ -6,7 +6,7 @@
 #include "stdio.h"
 
 namespace mystl {
-template<typename T , template<typename> class Order = Less >
+template<typename T , typename Order = Less<T> >
 class Tree
 {
 public:
@@ -15,16 +15,16 @@ public:
     node* m_root;
     node* m_end;
 private:
-    Order<T> m_order;
-
-
+    Order m_order;
 
     void deleteNode(node* tn){
-        printf("clear start - tn: %d \n" , tn->value());
+//        printf("clear start - tn: %d \n" , tn->value());
         if(tn->m_left != 0){
+            printf("left \n");
             deleteNode(tn->m_left);
         }
         if(tn->m_right){
+            printf("right \n");
             deleteNode(tn->m_right);
         }
         delete tn;
@@ -52,17 +52,24 @@ private:
         }else{
             return tn;
         }
-
-
-
     }
 
 public:
 
+    /**
+       Default Constructor
+    **/
     Tree():
         m_root(0),m_end(0)
     {}
 
+    /**
+       this method inserts a value into a tree,
+       if the root-node is 0, the value becomes
+       the root-node
+       @value is the value to save in the tree
+       @return the specific iterator for the node
+    **/
     iterator insert(const T& value){
         if(m_root == 0){
             node * tmp = new node(value);
@@ -75,37 +82,70 @@ public:
         }
     }
 
+    /**
+       allocates the memory of the tree
+       sets the root-node to 0
+    **/
     void clear(){
-        //            iterator start = this->begin();
-        //            while(start != this->end()){
-        //                node * tmp = start.m_node;
-        //            }
+        printf("clear start \n");
         if(m_root!=0){
+            printf("root not null \n");
             deleteNode(m_root);
         }
+        m_root = 0;
     }
 
+    /**
+       most left node
+       @return the iterator for the
+    **/
     iterator begin(){
         return this->first();
     }
+
+    /**
+       most right node
+       @return the iterator for the
+    **/
     iterator end(){
         iterator it(m_end, this);
         return it;
     }
+
+    /**
+       most left node
+       @return the iterator for the
+    **/
     iterator first(){
-        node* n = &(m_root->findFirst());
+        node* n = m_root->findFirst();
         iterator it(n, this);
         return it;
     }
+
+    /**
+       most right node
+       @return the iterator for the
+    **/
     iterator last(){
-        node* n = &(m_root->findLast());
+        node* n = m_root->findLast();
         iterator it(n, this);
         return it;
     }
+
+    /**
+       specific node, if found,
+       else return the end-iterator
+       @value the value to find
+       @return the iterator for the
+    **/
     iterator find(const T& value){
-        node* n = &(m_root->find(value));
-        iterator it(n, this);
-        return it;
+        node* n = m_root->find(value);
+        if(n){
+            iterator it(n, this);
+            return it;
+        }else{
+            return end();
+        }
     }
 
 };

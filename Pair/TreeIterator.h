@@ -6,12 +6,13 @@
 
 namespace mystl {
 
-    template<typename T , template<typename> class Order = Less >
+    template<typename T , typename Order = Less<T> >
     class TreeIterator
     {
+    public:
         typedef TreeNode<T,Order> node;
         typedef Tree<T,Order> tree;
-        Order<T> m_order;
+        Order m_order;
         tree* m_tree;
         node* m_node;
     private:
@@ -53,7 +54,7 @@ namespace mystl {
         }
 
         T* operator->(){
-            return *(m_node->m_value);
+            return &(m_node->m_value);
         }
 
         TreeIterator<T,Order>& operator++(){
