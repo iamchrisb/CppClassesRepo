@@ -6,7 +6,7 @@
 #include "stdio.h"
 
 namespace mystl {
-    template<typename T , template<typename> class Order = Less >
+    template<typename T , typename Order = Less<T> >
     class Tree
     {
     public:
@@ -15,7 +15,7 @@ namespace mystl {
         node* m_root;
         node* m_end;
     private:
-        Order<T> m_order;
+        Order m_order;
 
 
 
@@ -109,10 +109,14 @@ namespace mystl {
             return it;
         }
         iterator find(const T& value){
-            node* n = &(m_root->find(value));
+            node* n = (m_root->find(value));
+            if(n){
             iterator it(n, this);
             //printf("find first: %d\n", n->m_value);
             return it;
+            } else {
+                return this->end();
+            }
         }
 
     };
