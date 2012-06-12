@@ -115,6 +115,7 @@ int main()
     t.insert(22);
     printAndCount(t);
     printAndCountBackwards(t);
+    t.clear();
 //    t.clear();
  #if 0 // move this line down while your implementation proceeds...
 
