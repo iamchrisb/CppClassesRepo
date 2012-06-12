@@ -2,6 +2,7 @@
 #define PAIR_H
 
 #include <iostream>
+#include "stdio.h"
 
 namespace mystl{
 template<typename T1, typename T2>
@@ -37,6 +38,13 @@ public:
         m_second = p.second();
         return *this;
     }
+    Pair<T1,T2>& operator =(T2& t){
+    //        return Pair(p);
+        printf(" pair=t2 ");
+        m_second = t;
+        return *this;
+    }
+
 
 };
 
@@ -45,7 +53,12 @@ std::ostream& operator<< (std::ostream& out, const Pair<T1,T2> &pair){
     out << "Pair<" << pair.first() << "," << pair.second() << ">";
     return out;
 }
-
+//template<typename T1, typename T2>
+//Pair<T1,T2>& operator =(T2& t){
+////        return Pair(p);
+//    m_second = t;
+//    return *this;
+//}
 }
 
 #endif // PAIR_H

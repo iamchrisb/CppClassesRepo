@@ -132,10 +132,10 @@ int main()
     // insert pairs of (key,value)
     m.insert(p42);
     m.insert(p7);
-    m.insert(p1);
-    m.insert(p50);
+//    m.insert(p1);
+//    m.insert(p50);
     cout << "map 42-7: ";
-    assert(printAndCount(m) == 4);
+    assert(printAndCount(m) == 2);
 
     // test finding elements via operator()
     cout << "find 42 in map: " << (value=m[42]) << endl;
@@ -145,14 +145,18 @@ int main()
 
     // direct write access via operator[]
     cout << "setting m[3] and m[1]." << endl;
-//    m[1] = p1.second();
-//    m[3] = p3.second();
-    m.clear();
+    m[1] = p1.second();
+//    printf(" p3.second() ");
+    m[3] = p3.second();
+    cout << "m[3] = p3.second();: " << (m[3]) << endl;
+//    p1= p3.second();
+//    cout << "find 3 in map: " << (p1) << endl;
+//    m.clear();
 
-#if 0 // move this line down while your implementation proceeds...
+
     cout << "find 3 in map: " << (value=m[3]) << endl;
     assert(value == p3.second());
-
+#if 0 // move this line down while your implementation proceeds...
     cout << "resulting map: ";
     assert(printAndCount(m) == 4);
 

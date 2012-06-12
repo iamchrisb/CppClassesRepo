@@ -20,6 +20,7 @@ public:
     Map(KeyT key=KeyT(), ValueT value=ValueT()):m_pair(key, value){}
 
     iterator insert(const typePair& pair){
+        printf("insertMethode");
         return m_tree.insert(pair);
     }
 
@@ -28,9 +29,10 @@ public:
         iterator it = this->find(key);
 
         if(it == m_tree.end()){
-            iterator it2=this->insert(key);
-            return it2.m_node->value().second();
+            printf("insertaufruf");
+            return this->insert(typePair(key)).m_node->value().second();
         }else{
+            printf("no Insert");
             return this->find(key).m_node->value().second();
         }
     }
