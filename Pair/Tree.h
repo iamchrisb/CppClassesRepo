@@ -9,16 +9,20 @@ namespace mystl {
     template<typename T , template<typename> class Order = Less >
     class Tree
     {
+    public:
         typedef TreeNode<T,Order> node;
         typedef TreeIterator<T, Order> iterator;
-
+        node* m_root;
+        node* m_end;
     private:
         Order<T> m_order;
-        node* m_root;
+
+
 
         void deleteNode(node* tn){
             if(tn == m_root && m_root->m_left == 0 && m_root->m_right == 0){
                 m_root=0;
+                delete m_root;
             }else{
                 node tmp = tn->findFirst();
                 if(tmp.m_right != 0){
@@ -26,7 +30,7 @@ namespace mystl {
                 }else{
                     node* tmpup = tmp.m_up;
                     printf("deleting: %d", tmp.m_value);
-                    tmp = 0;
+                    delete tmp;
 
                     deleteNode(tmpup);
                 }
@@ -40,6 +44,7 @@ namespace mystl {
                     return rekInsert(tn->m_left , value);
                 }else{
                     node* tmp = new node(value);
+                    tmp->m_up = tn;
                     tn->m_left = tmp;
                     return tn->m_left;
                 }
@@ -48,6 +53,7 @@ namespace mystl {
                     return rekInsert(tn->m_right , value);
                 }else{
                     node * tmp = new node(value);
+                    tmp->m_up = tn;
                     tn->m_right = tmp;
                     return tn->m_right;
                 }
@@ -62,7 +68,7 @@ namespace mystl {
     public:
 
         Tree():
-            m_root(0)
+            m_root(0),m_end(0)
             {}
 
         iterator insert(const T& value){
@@ -81,8 +87,34 @@ namespace mystl {
             if(m_root!=0){
                 deleteNode(&(m_root->findFirst()));
             }
-
         }
+
+        iterator begin(){
+            return this->first();
+        }
+        iterator end(){
+            iterator it(m_end, this);
+            return it;
+        }
+        iterator first(){
+            node* n = &(m_root->findFirst());
+            iterator it(n, this);
+            //printf("find first: %d\n", n->m_value);
+            return it;
+        }
+        iterator last(){
+            node* n = &(m_root->findLast());
+            iterator it(n, this);
+            //printf("find first: %d\n", n->m_value);
+            return it;
+        }
+        iterator find(const T& value){
+            node* n = &(m_root->find(value));
+            iterator it(n, this);
+            //printf("find first: %d\n", n->m_value);
+            return it;
+        }
+
     };
 }
 

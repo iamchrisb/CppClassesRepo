@@ -38,6 +38,10 @@ template<class Container>
 int printAndCount(Container & c) {
 
     int n=0;
+    typename Container::iterator itest=c.begin();
+    cout << *itest << " itest begin ";
+//    itest=c.end();
+    cout << (itest==c.end()) << " itest end ";
     for(typename Container::iterator i=c.begin(); i!=c.end(); ++i, ++n)
         cout << *i << " ";
 
@@ -109,7 +113,8 @@ int main()
     t.insert(20);
     t.insert(17);
     t.insert(22);
-
+    printAndCount(t);
+    printAndCountBackwards(t);
 //    t.clear();
  #if 0 // move this line down while your implementation proceeds...
 

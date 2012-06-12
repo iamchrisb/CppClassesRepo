@@ -90,7 +90,7 @@ namespace mystl {
 
         TreeNode<T , Order>& findLast(){
             node* tmp = findRoot(this);
-            return findRight(tmp);
+            return *(findRight(tmp));
         }
 
         TreeNode(const T &value = 0):m_left(0), m_right(0),m_up(0), m_value(value)
