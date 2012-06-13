@@ -9,33 +9,37 @@ template<typename KeyT, typename ValueT , typename OrderT = MapToFirst<KeyT, Val
 class Map{
 private:
 
-    OrderT m_order;
-    Pair<KeyT,ValueT> m_pair;
+//    OrderT m_order;
+//    Pair<KeyT,ValueT> m_pair;
     Tree<Pair<KeyT,ValueT>, OrderT > m_tree;
 public:
 
     typedef Pair<KeyT,ValueT> typePair;
     typedef TreeIterator<typePair, OrderT> iterator;
 
-    Map(KeyT key=KeyT(), ValueT value=ValueT()):m_pair(key, value){}
+//    Map(KeyT key=KeyT(), ValueT value=ValueT()):m_pair(key, value){}
 
-    iterator insert(const typePair& pair){
-        printf("insertMethode");
-        return m_tree.insert(pair);
-    }
 
     ValueT& operator[](const KeyT& key){
 
         iterator it = this->find(key);
 
-        if(it == m_tree.end()){
-            printf("insertaufruf");
-            return this->insert(typePair(key)).m_node->value().second();
+        if(it != m_tree.end()){
+//            printf("insertaufruf");
+            typePair &pair = *it;
+            return pair.second();
         }else{
-            printf("no Insert");
-            return this->find(key).m_node->value().second();
+//            printf("no Insert");
+            typePair pairToInsert(key);
+            return this->insert(pairToInsert)->second();
+
         }
     }
+    iterator insert(const typePair& pair){
+//        printf("insertMethode");
+        return m_tree.insert(pair);
+    }
+
     iterator find(const KeyT& key){
         return m_tree.find(typePair(key));
     }

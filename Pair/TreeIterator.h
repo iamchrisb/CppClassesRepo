@@ -61,7 +61,10 @@ namespace mystl {
                 //if(wenn order greater order einsetzen){
                 // this.--;
                 //}else{
-
+            if(m_tree->m_root == 0){
+                m_node = m_tree->m_end;
+                return *this;
+            }
             if(m_node == m_tree->m_end){
                 m_node = m_tree->first().m_node;
                 return *this;

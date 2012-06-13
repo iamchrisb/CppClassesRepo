@@ -100,6 +100,9 @@ public:
        @return the iterator for the
     **/
     iterator begin(){
+        if(m_root == 0){
+            return this->end();
+        }
         return this->first();
     }
 
@@ -108,8 +111,8 @@ public:
        @return the iterator for the
     **/
     iterator end(){
-        iterator it(m_end, this);
-        return it;
+       // iterator it(m_end, this);
+        return iterator(m_end, this);
     }
 
     /**
@@ -117,6 +120,9 @@ public:
        @return the iterator for the
     **/
     iterator first(){
+        if(m_root == 0){
+            return this->end();
+        }
         node* n = m_root->findFirst();
         iterator it(n, this);
         return it;
@@ -127,6 +133,9 @@ public:
        @return the iterator for the
     **/
     iterator last(){
+        if(m_root == 0){
+            return this->end();
+        }
         node* n = m_root->findLast();
         iterator it(n, this);
         return it;
