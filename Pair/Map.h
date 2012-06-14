@@ -102,6 +102,7 @@ public:
     /**
       allocates the memory
       deletes the map
+      sets rood node to 0
     **/
     void clear(){
         m_tree.clear();
