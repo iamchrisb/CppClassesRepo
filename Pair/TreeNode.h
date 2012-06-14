@@ -22,7 +22,7 @@ namespace mystl {
     private:
         Order m_order;
         T m_value;
-    private:
+
         node* findRoot(node* t){
             if(t->m_up == 0){
                 return t;
@@ -33,7 +33,6 @@ namespace mystl {
 
         node* findLeft(node* t){
             if(t->m_left == 0){
-//                printf("findLeft() : %d \n" , t->value());
                 return t;
             }else{
                 return findLeft(t->m_left);
@@ -47,6 +46,7 @@ namespace mystl {
                 return findRight(t->m_right);
             }
         }
+
         node* findByValue(node* tn,const T value){
             if(m_order(value , tn->m_value )){
                 if(tn->m_left != 0){
@@ -69,15 +69,25 @@ namespace mystl {
         T value(){ return m_value; }
         void value(const T& value){ m_value = value;}
 
+        /**
+          @param specific value for the tree
+          @return a node pointer if found, else 0
+        **/
         TreeNode<T , Order>* find(const T&value){
             return findByValue(this , value);
         }
 
+        /**
+          @return the last node on the left side
+        **/
         TreeNode<T , Order>* findFirst(){
             node* tmp = findRoot(this);
             return findLeft(tmp);
         }
 
+        /**
+          @return the last node on the right side
+        **/
         TreeNode<T , Order>* findLast(){
             node* tmp = findRoot(this);
             return findRight(tmp);

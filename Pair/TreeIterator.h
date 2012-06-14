@@ -12,10 +12,12 @@ namespace mystl {
     public:
         typedef TreeNode<T,Order> node;
         typedef Tree<T,Order> tree;
+
+    protected:
         Order m_order;
         tree* m_tree;
         node* m_node;
-    private:
+
         node* getLeftSize(node* n){
             if(n->m_left == 0){
                 return n;
@@ -49,55 +51,59 @@ namespace mystl {
         TreeIterator(node* treeNode):m_node(treeNode){}
         TreeIterator(node* treeNode=0, tree* t=0):m_node(treeNode),m_tree(t){}
 
+        /**
+          getter for m_node
+        **/
+        node* it_node(){ return m_node; }
         T& operator*(){
             return m_node->m_value;
         }
 
+        /**
+          operator overloading
+          @return the specific value of the m_node
+        **/
         T* operator->(){
             return &(m_node->m_value);
         }
 
+        /**
+          operator overloading
+          @return gives back an iterator of the current node
+        **/
         TreeIterator<T,Order>& operator++(){
-                //if(wenn order greater order einsetzen){
-                // this.--;
-                //}else{
-            if(m_tree->m_root == 0){
-                m_node = m_tree->m_end;
+            if(m_tree->root() == 0){
+                m_node = m_tree->node_end();
                 return *this;
             }
-            if(m_node == m_tree->m_end){
+            if(m_node == m_tree->node_end()){
                 m_node = m_tree->first().m_node;
                 return *this;
             }
             if(m_node == m_tree->last().m_node){
-                m_node = m_tree->m_end;
+                m_node = m_tree->node_end();
                 return *this;
             }
 
                 if(m_node->m_right){
-
                     m_node = getLeftSize(m_node->m_right);
-                    //printf("node: %d",m_node->m_value );
                     return *this;
                 }else{
-                    if(m_node == m_tree->m_root){
-                        m_node = m_tree->m_root;
-                         //printf("node: %d",m_node->m_value );
+                    if(m_node == m_tree->root()){
+                        m_node = m_tree->root();
                         return *(new TreeIterator<T,Order>);
                     }
 
                     m_node = getUpSize(m_node);
-                     //printf("node: %d",m_node->m_value );
                     return *this;
                 }
-            //}
         }
 
+        /**
+          operator overloading
+          @return gives back an iterator of the current node
+        **/
         TreeIterator<T,Order>& operator--(){
-
-            //if(wenn order greater order einsetzen){
-            // this.++;
-            //}else{
 
             if(m_node == m_tree->begin().m_node){
 
@@ -105,7 +111,7 @@ namespace mystl {
                 return *this;
             }
 
-            if(m_node == m_tree->m_end){
+            if(m_node == m_tree->node_end()){
 
                 m_node = m_tree->last().m_node;
                 return *this;
@@ -113,12 +119,11 @@ namespace mystl {
                 if(m_node->m_left){
 
                     m_node = getRightSize(m_node->m_left);
-//                     printf("node: %d",m_node->m_value );
                     return *this;
                 }else{
 
-                    if(m_node == m_tree->m_root){
-                        m_node = m_tree->m_root;
+                    if(m_node == m_tree->root()){
+                        m_node = m_tree->root();
                          //printf("node: %d",m_node->m_value );
                          return *(new TreeIterator<T,Order>);
                     }
@@ -129,9 +134,18 @@ namespace mystl {
             //}
         }
 
+        /**
+          operator overloading
+          @return bool - compares two iterators, true if equal
+        **/
         bool operator==(const TreeIterator<T,Order> &rhs){
             return (m_tree == rhs.m_tree && m_node == rhs.m_node);
         }
+
+        /**
+          operator overloading
+          @return bool - compares two iterators, true if not equal
+        **/
         bool operator!=(const TreeIterator<T,Order> &rhs){
             return (m_tree != rhs.m_tree || m_node != rhs.m_node);
         }

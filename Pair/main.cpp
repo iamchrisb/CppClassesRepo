@@ -290,6 +290,7 @@ int main()
     return 0;
 #endif
 
+        //TEST SCHIRMACHER
         cout << "Starting..." << endl;
 
         /////////////////////////////////////////

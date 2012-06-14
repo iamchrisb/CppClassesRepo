@@ -12,24 +12,31 @@ class Tree
 public:
     typedef TreeNode<T,Order> node;
     typedef TreeIterator<T, Order> iterator;
+
+protected:
     node* m_root;
     node* m_end;
-private:
+
     Order m_order;
 
+    /**
+      starting at root
+      going through all nodes
+      deleting first to last
+    **/
     void deleteNode(node* tn){
-//        printf("clear start - tn: %d \n" , tn->value());
         if(tn->m_left != 0){
-            printf("left \n");
             deleteNode(tn->m_left);
         }
         if(tn->m_right){
-            printf("right \n");
             deleteNode(tn->m_right);
         }
         delete tn;
     }
 
+    /**
+      inserts values in the tree
+    **/
     node* rekInsert(node* tn, const T& value){
         if(m_order(value , tn->m_value )){
             if(tn->m_left != 0){
@@ -55,6 +62,9 @@ private:
     }
 
 public:
+
+    node* root(){ return m_root; }
+    node* node_end(){ return m_end; }
 
     /**
        Default Constructor
